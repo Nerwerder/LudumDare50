@@ -8,6 +8,18 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 1f;
+    public float interactionDistance = 3f;
+    public float throwPower = 5f;
+    public float throwUpPower = 4f;
+
+
+    //TODO: Remove after Modell is there
+    public Transform carryPosition;
+
+    /// <summary>
+    /// The object that is currently carried
+    /// </summary>
+    private Carriable carry = null;
 
     void Start()
     {
@@ -40,5 +52,45 @@ public class Player : MonoBehaviour
 
     float AngleBetweenTwoPoints(Vector3 a, Vector3 b) {
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+    }
+
+    public bool InInteractionDistance(Transform other) {
+        return ((other.position - transform.position).magnitude < interactionDistance);
+    }
+
+    public void Interact(List<Interactable> interactables, Vector3 hitPoint) {
+        if(interactables.Count != 0) {
+            foreach(Interactable i in interactables) {
+                if(carry) {
+                    i.InteractWith(carry);
+                } else {
+                    i.Interact(this);
+                }
+            }
+        } else {
+            if(carry) {
+                Throw(hitPoint);
+            }
+        }
+    }
+
+    public void CarryMe(Carriable c) {
+        Debug.Assert(!carry, "Cannot carry multiple things");
+        c.GetComponent<Rigidbody>().isKinematic = true;
+        c.transform.position = carryPosition.transform.position;
+        c.transform.rotation = Quaternion.identity;
+        c.transform.parent = carryPosition;
+        carry = c;
+    }
+
+    public void Throw(Vector3 target) {
+        Debug.Assert(carry, "Throwing requires a carry");
+
+        carry.GetComponent<Rigidbody>().isKinematic = false;
+        carry.transform.SetParent(carry.oldParent);
+        Vector3 ThrowVector = ((target - transform.position) * throwPower) + (Vector3.up * throwUpPower);
+        carry.GetComponent<Rigidbody>().AddForce(ThrowVector);
+
+        carry = null;
     }
 }
