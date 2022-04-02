@@ -25,10 +25,4 @@ public abstract class Interactable : MonoBehaviour
     /// </summary>
     /// <param name="o"></param>
     public abstract void InteractWith(Interactable o);
-
-
-    /// <summary>
-    /// Roll over an interactable
-    /// </summary>
-    public abstract void RollOver();
 }

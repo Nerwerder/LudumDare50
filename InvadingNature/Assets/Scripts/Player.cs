@@ -7,11 +7,14 @@ using UnityEngine;
 /// </summary>
 public class Player : MonoBehaviour
 {
+    public const string interactableTag = "Interactable";
+
     public float speed = 1f;
     public float interactionDistance = 3f;
     public float throwPower = 5f;
     public float throwUpPower = 4f;
 
+    [HideInInspector] public float moveSpeed = 0f;
 
     //TODO: Remove after Modell is there
     public Transform carryPosition;
@@ -21,19 +24,18 @@ public class Player : MonoBehaviour
     /// </summary>
     private Carriable carry = null;
 
-    void Start()
-    {
-        //Nothing
-    }
-
-    void Update()
-    {
-        //Nothing
-    }
+    /// <summary>
+    /// Interactables that are currently below the player (there was a trigger Enter)
+    /// </summary>
+    List<Interactable> interactablesBelowPlayer = new List<Interactable>();
 
     public void Move(float vertical) {
-        float moveSpeed = vertical * speed * Time.deltaTime;
-        transform.Translate(transform.worldToLocalMatrix.MultiplyVector(transform.forward) * moveSpeed);
+        if(vertical != 0f) {
+            moveSpeed = vertical * speed * Time.deltaTime;
+            transform.Translate(transform.worldToLocalMatrix.MultiplyVector(transform.forward) * moveSpeed);
+        } else {
+            moveSpeed = 0f;
+        }
     }
 
     public void Rotate(Vector3 target) {
@@ -58,8 +60,18 @@ public class Player : MonoBehaviour
         return ((other.position - transform.position).magnitude < interactionDistance);
     }
 
-    public void Interact(List<Interactable> interactables, Vector3 hitPoint) {
-        if(interactables.Count != 0) {
+    public void Interact(RaycastHit[] hits) {
+        List<Interactable> interactables = new List<Interactable>();
+        Vector3 hitPoint = Vector3.zero;
+        foreach (RaycastHit hit in hits) {
+            if (hit.transform.tag == interactableTag && InInteractionDistance(hit.transform)) {
+                interactables.Add(hit.transform.gameObject.GetComponent<Interactable>());
+            } else {
+                hitPoint = hit.point;
+            }
+        }
+
+        if (interactables.Count != 0) {
             foreach(Interactable i in interactables) {
                 if(carry) {
                     i.InteractWith(carry);
