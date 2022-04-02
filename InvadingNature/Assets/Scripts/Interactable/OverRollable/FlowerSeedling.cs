@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class FlowerSeedling : OverRollable
 {
-    public Flower flower;
-    public float minFloweringTime = 2f;
-    public float maxFloweringTime = 4f;
+    public GameObject nextPhase;
+    public float minPhaseTime = 2f;
+    public float maxPhaseTime = 4f;
     float fTimerThreshold = 0f;
+    float timer = 0f;
 
     protected override void Start() {
         base.Start();
-        fTimerThreshold = Random.Range(minFloweringTime, maxFloweringTime);
+        fTimerThreshold = Random.Range(minPhaseTime, maxPhaseTime);
     }
 
     protected override void Update() {
         base.Update();
+        timer += Time.deltaTime;
         if (timer > fTimerThreshold) {
-            TurnInto(flower.gameObject);
+            TurnInto(nextPhase);
         }
     }
 

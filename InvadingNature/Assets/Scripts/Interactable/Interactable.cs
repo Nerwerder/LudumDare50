@@ -13,11 +13,6 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     /// <summary>
-    /// Default Timer that accumulates deltaTime in Update()
-    /// </summary>
-    protected float timer = 0f;
-
-    /// <summary>
     /// Interact with the Player
     /// Player guarantees he carries nothing!
     /// </summary>
@@ -33,15 +28,7 @@ public abstract class Interactable : MonoBehaviour
     protected void TurnInto(GameObject g) {
         Vector3 nPos = transform.position;
         nPos.y = g.transform.position.y;
-        Instantiate(g, nPos, Quaternion.identity, transform.parent);
+        Instantiate(g, nPos, Quaternion.identity, transform.parent);    //TODO: give Parent
         Destroy(gameObject);
-    }
-
-    protected virtual void Start() {
-        timer = 0f;
-    }
-
-    protected virtual void Update() {
-        timer += Time.deltaTime;
     }
 }

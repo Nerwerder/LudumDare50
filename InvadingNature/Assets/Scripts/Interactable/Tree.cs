@@ -8,21 +8,21 @@ public class Tree : Interactable
     public Acorn acorn = null;
     public float minStageTime = 5f;
     public float maxStageTime = 10f;
-    private float sTimerThreshold = 0f;
+    float sTimerThreshold = 0f;
+    float timer = 0f;
 
     private void ResetTimer() {
         timer = 0f;
         sTimerThreshold = Random.Range(minStageTime, maxStageTime);
     }
 
-    protected override void Start() {
-        base.Start();
+    private void Start() {
         ResetTimer();
     }
 
-    protected override void Update() {
-        base.Update();
-        if(nextStage == null && (timer > sTimerThreshold)) {
+    private void Update() {
+        timer += Time.deltaTime;
+        if (nextStage == null && (timer > sTimerThreshold)) {
             ResetTimer();
             SpawnAcorn();
         } else if(nextStage != null && (timer > sTimerThreshold)) {

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9205475587418222861
+--- !u!1 &1715621224723057721
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9205475587418222849}
-  - component: {fileID: 9205475587418222850}
-  - component: {fileID: 9205475587418222851}
-  - component: {fileID: 9205475587418222860}
-  - component: {fileID: 9205475587418222848}
-  - component: {fileID: 9205475587418222855}
+  - component: {fileID: 1715621224723057726}
+  - component: {fileID: 1715621224723057725}
+  - component: {fileID: 1715621224723057724}
+  - component: {fileID: 1715621224723057727}
+  - component: {fileID: 1715621224723057698}
   m_Layer: 0
-  m_Name: FlowerSeed
-  m_TagString: Interactable
+  m_Name: Body
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9205475587418222849
+--- !u!4 &1715621224723057726
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9205475587418222861}
+  m_GameObject: {fileID: 1715621224723057721}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1715621225531564421}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &9205475587418222850
+--- !u!33 &1715621224723057725
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9205475587418222861}
+  m_GameObject: {fileID: 1715621224723057721}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &9205475587418222851
+--- !u!23 &1715621224723057724
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9205475587418222861}
+  m_GameObject: {fileID: 1715621224723057721}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,51 +85,68 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &9205475587418222860
+--- !u!135 &1715621224723057727
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9205475587418222861}
+  m_GameObject: {fileID: 1715621224723057721}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9205475587418222848
+--- !u!114 &1715621224723057698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9205475587418222861}
+  m_GameObject: {fileID: 1715621224723057721}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdec8493ea7798542ae957360f3399e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  rollOverDamage: 90
-  movementSpeedFactor: 120
+  rollOverDamage: 80
+  movementSpeedFactor: 110
   possibleSeedlings:
-  - {fileID: 7457613134294648642, guid: 5f7b4258cf70ef94896385a75f60d04c, type: 3}
-  minSproutingTime: 4
-  maxSproutingTime: 8
---- !u!54 &9205475587418222855
-Rigidbody:
+  - {fileID: 7879094958419561213, guid: 0299fe7591a76e34086d11d45f4142c1, type: 3}
+  minSproutingTime: 3
+  maxSproutingTime: 5
+  noGrowthZoneDamage: 45
+--- !u!1 &1715621225531564420
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9205475587418222861}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1715621225531564421}
+  m_Layer: 0
+  m_Name: Flower_0_seed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1715621225531564421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715621225531564420}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1715621224723057726}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

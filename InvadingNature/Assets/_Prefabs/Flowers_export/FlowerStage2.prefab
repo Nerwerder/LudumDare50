@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 8328108970563461729}
   - component: {fileID: 4917008755132132804}
   - component: {fileID: 7194586306841811214}
+  - component: {fileID: 7657663825587642139}
+  - component: {fileID: 7657663825587642140}
+  - component: {fileID: 7657663825587642138}
   m_Layer: 0
   m_Name: FlowerStage2
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,3 +87,50 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &7657663825587642139
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707905938664569051}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7657663825587642140
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707905938664569051}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.22590196, y: 0.27447805, z: 0.20895228}
+  m_Center: {x: -0.0021321997, y: 0.13688006, z: 0.0044761486}
+--- !u!114 &7657663825587642138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707905938664569051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0baab5bd2ca034e866325336d9d28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  rollOverDamage: 80
+  movementSpeedFactor: 130
+  nextPhase: {fileID: 8479246817349816524, guid: cc95f0ba257089849be22143b7338245, type: 3}
+  minPhaseTime: 4
+  maxPhaseTime: 8

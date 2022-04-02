@@ -5,13 +5,15 @@ using UnityEngine;
 public class PlantController : MonoBehaviour
 {
     //FLOWERS
-    public FlowerSeed seedling;
+    public bool enableFlowers = true;
+    public GameObject seedling;
     private float flowerTimer = 0f;
     private float fTimerThreshold = 0f;
     public float flowerMinTime = 0f;
     public float flowerMaxTime = 1f;
 
     //TREES
+    public bool enableTrees = true;
     public Acorn acorn;
     private float acornTimer = 0f;
     private float aTimerThreshold = 0f;
@@ -30,17 +32,21 @@ public class PlantController : MonoBehaviour
     void Update()
     {
         //Flower
-        flowerTimer += Time.deltaTime;
-        if(flowerTimer > fTimerThreshold) {
-            Spawn(seedling.gameObject);
-            ResetFlowerTimer();
+        if(enableFlowers) {
+            flowerTimer += Time.deltaTime;
+            if (flowerTimer > fTimerThreshold) {
+                Spawn(seedling);
+                ResetFlowerTimer();
+            }
         }
 
         //Acorn
-        acornTimer += Time.deltaTime;
-        if(acornTimer > aTimerThreshold) {
-            Spawn(acorn.gameObject);
-            ResetAcornTimer();
+        if(enableTrees) {
+            acornTimer += Time.deltaTime;
+            if (acornTimer > aTimerThreshold) {
+                Spawn(acorn.gameObject);
+                ResetAcornTimer();
+            }
         }
     }
 

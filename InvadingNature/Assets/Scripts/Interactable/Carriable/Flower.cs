@@ -7,33 +7,81 @@ using UnityEngine;
 /// </summary>
 public class Flower : Carriable
 {
-    public FlowerSeed seed;
+    //Phase
+    public GameObject nextPhase = null;
+    public float minPhaseTime = 2f;
+    public float maxPhaseTime = 4f;
+
+    //Spawn Seed - Living Plant
+    public GameObject seed = null;
     public float minSeedSpawnTime = 2f;
     public float maxSeedSpawnTime = 4f;
-    float seedSpawnThreshold = 0f;
+    public int minSpawnedSeedOnDeath = 3;
+    public int maxSpawnedSeedOnDeath = 7;
+    public float seedSpawnRange = 2f;
+
+    //On the Ground
+    public float minDeathTime = 4f;
+    public float maxDeathTime = 8f;
+    float dTimerThreshhold = 0f;
+    float deathTimer = 0f;
+
+    //Common
+    float tThreshold = 0f;
+    float timer = 0f;
 
     private void ResetTimer() {
-        nonCarriedTimer = 0;
-        seedSpawnThreshold = Random.Range(minSeedSpawnTime, maxSeedSpawnTime);
-    }
-
-    protected override void Start() {
-        base.Update();
-        ResetTimer();
-    }
-
-    protected override void Update() {
-        base.Update();
-        if(nonCarriedTimer >= seedSpawnThreshold) {
-            ResetTimer();
-            SpawnSeed();
+        timer = 0;
+        if(nextPhase) {
+            tThreshold = Random.Range(minPhaseTime, maxPhaseTime);
+        } else if (seed) {
+            tThreshold = Random.Range(minSeedSpawnTime, maxSeedSpawnTime);
+        } else {
+            Debug.Assert(false, "Unknown Timer state");
         }
     }
 
+    protected override void Start() {
+        base.Start();
+        ResetTimer();
+        dTimerThreshhold = Random.Range(minPhaseTime, maxDeathTime);
+    }
+
+    void Update() {
+        //Plant is in the Ground and alive
+        if(!Carried && !Uprooted) {
+            timer += Time.deltaTime;
+            if (timer >= tThreshold) {
+                if (nextPhase) {
+                    TurnInto(nextPhase);
+                } else if (seed) {
+                    SpawnSeed();
+                    ResetTimer();
+                }
+            }
+        }
+
+        //Plant is on the Ground and dead
+        if(!Carried && Uprooted) {
+            deathTimer += Time.deltaTime;
+            if(deathTimer > dTimerThreshhold) {
+                int spawned = Random.Range(minSpawnedSeedOnDeath, maxSpawnedSeedOnDeath);
+                for(int k = 0; k < spawned; ++k) {
+                    SpawnSeed();
+                }
+                Destroy(gameObject);
+            }
+        }
+
+    }
+
     private void SpawnSeed() {
-        float range = 2f;
-        Vector3 sSpawnPos = new Vector3(transform.position.x + Random.Range(-range, range), 0, transform.position.z * Random.Range(-range, range));
-        Instantiate(seed, sSpawnPos, Quaternion.identity, transform.parent);
+        if(seed != null) {
+            float xOffset = Random.Range(-seedSpawnRange, seedSpawnRange);
+            float zOffset = Random.Range(-seedSpawnRange, seedSpawnRange);
+            Vector3 sSpawnPos = new Vector3(transform.position.x + xOffset, 0, transform.position.z + zOffset);
+            Instantiate(seed, sSpawnPos, Quaternion.identity, transform.parent);
+        }
     }
 
     public override void Interact(Player p) {

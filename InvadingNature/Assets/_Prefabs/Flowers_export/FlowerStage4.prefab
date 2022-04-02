@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 1013981136837340567}
   - component: {fileID: 4160686062482350642}
   - component: {fileID: 2186865560652683000}
+  - component: {fileID: 8362236797351219360}
+  - component: {fileID: 8362236797351219361}
+  - component: {fileID: 8362236797351219367}
   m_Layer: 0
   m_Name: FlowerStage4
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,3 +88,54 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &8362236797351219360
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385535867333293869}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &8362236797351219361
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385535867333293869}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.33739617, y: 0.7547894, z: 0.46254683}
+  m_Center: {x: -0.05661194, y: 0.37703577, z: 0.027084164}
+--- !u!114 &8362236797351219367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385535867333293869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c0b9e5c20c8ef34d9935b6f8b9826d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oldParent: {fileID: 0}
+  nextPhase: {fileID: 0}
+  minPhaseTime: 0
+  maxPhaseTime: 0
+  seed: {fileID: 1715621225531564420, guid: 7bf1554ac0cc0e243a325dbb8c726c2f, type: 3}
+  minSeedSpawnTime: 3
+  maxSeedSpawnTime: 7
+  seedSpawnRange: 2
+  minDeathTime: 4
+  maxDeathTime: 8

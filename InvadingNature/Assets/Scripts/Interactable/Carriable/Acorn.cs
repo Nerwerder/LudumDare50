@@ -11,15 +11,16 @@ public class Acorn : Carriable
     public float minTreeTime = 5f;
     public float maxTreeTime = 10f;
     private float treeTimeThreshold = 0;
+    float timer = 0f;
 
     protected override void Start() {
         base.Start();
         treeTimeThreshold = Random.Range(minTreeTime, maxTreeTime);
     }
 
-    protected override void Update() {
-        base.Update();
-        if(nonCarriedTimer > treeTimeThreshold) {
+    void Update() {
+        timer += Time.deltaTime;
+        if (timer > treeTimeThreshold) {
             TurnInto(tree.gameObject);
         }
     }

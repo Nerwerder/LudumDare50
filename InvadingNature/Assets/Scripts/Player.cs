@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
         c.transform.rotation = Quaternion.identity;
         c.transform.parent = carryPosition;
         carry = c;
-        carry.Carrying = true;
+        carry.Carried = true;
     }
 
     public void Throw(Vector3 target) {
@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
         carry.transform.SetParent(carry.oldParent);
         Vector3 ThrowVector = ((target - transform.position) * throwPower) + (Vector3.up * throwUpPower);
         carry.GetComponent<Rigidbody>().AddForce(ThrowVector);
-        carry.Carrying = false;
+        carry.Carried = false;
         carry = null;
     }
 }

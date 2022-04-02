@@ -9,29 +9,29 @@ public abstract class Carriable : Interactable
     /// </summary>
     [HideInInspector] public Transform oldParent = null;
 
-    /// <summary>
-    /// Ho much time did this object spend on the ground
-    /// </summary>
-    protected float nonCarriedTimer = 0f;
-
-    /// <summary>
-    /// Is this object currently carried?
-    /// </summary>
     protected bool carried = false;
-    public bool Carrying {
-        set { carried = value; }
+    /// <summary>
+    /// Is this object currently carried
+    /// </summary>
+    public bool Carried {
+        set { carried = value; 
+            if(carried) {
+                uprooted = true;
+            }
+        }
         get { return carried; }
     }
 
-    protected override void Start() {
-        base.Start();
+    bool uprooted = false;
+    /// <summary>
+    /// Was this object once carried
+    /// </summary>
+    public bool Uprooted {
+        get { return uprooted; }
+    }
+
+    protected virtual void Start() {
         oldParent = transform.parent;
     }
 
-    protected override void Update() {
-        base.Update();
-        if(!carried) {
-            nonCarriedTimer += Time.deltaTime;
-        }
-    }
 }

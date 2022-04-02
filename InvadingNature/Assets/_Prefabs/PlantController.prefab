@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f316e78fe14165948a5f4cc7ced98817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedling: {fileID: 9205475587418222848, guid: dbb078186db7554408e2a4b93ffe719a, type: 3}
+  enableFlowers: 1
+  seedling: {fileID: 1715621225531564420, guid: 7bf1554ac0cc0e243a325dbb8c726c2f, type: 3}
   flowerMinTime: 2
   flowerMaxTime: 3
+  enableTrees: 0
   acorn: {fileID: 3132837966320858445, guid: 3cc2e7e3b18341d4a957c33f66c656a9, type: 3}
   acornMinTime: 4
   acornMaxTime: 5
