@@ -210,6 +210,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oldParent: {fileID: 0}
+  seed: {fileID: 9205475587418222848, guid: dbb078186db7554408e2a4b93ffe719a, type: 3}
+  minSeedSpawnTime: 2
+  maxSeedSpawnTime: 4
 --- !u!54 &8564710103404417430
 Rigidbody:
   m_ObjectHideFlags: 0

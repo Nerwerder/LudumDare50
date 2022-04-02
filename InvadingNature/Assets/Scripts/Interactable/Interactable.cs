@@ -12,6 +12,10 @@ using UnityEngine;
 /// </summary>
 public abstract class Interactable : MonoBehaviour
 {
+    /// <summary>
+    /// Default Timer that accumulates deltaTime in Update()
+    /// </summary>
+    protected float timer = 0f;
 
     /// <summary>
     /// Interact with the Player
@@ -25,4 +29,19 @@ public abstract class Interactable : MonoBehaviour
     /// </summary>
     /// <param name="o"></param>
     public abstract void InteractWith(Interactable o);
+
+    protected void TurnInto(GameObject g) {
+        Vector3 nPos = transform.position;
+        nPos.y = g.transform.position.y;
+        Instantiate(g, nPos, Quaternion.identity, transform.parent);
+        Destroy(gameObject);
+    }
+
+    protected virtual void Start() {
+        timer = 0f;
+    }
+
+    protected virtual void Update() {
+        timer += Time.deltaTime;
+    }
 }

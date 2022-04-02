@@ -8,19 +8,16 @@ public class FlowerSeed : OverRollable
     //Sprouting
     public float minSproutingTime = 3f;
     public float maxSproutingTime = 5f;
-    float sproutingTimer = 0f;
     float sTimeThreshold = 0f;
 
     protected override void Start() {
         base.Start();
-        sproutingTimer = 0f;
         sTimeThreshold = Random.Range(minSproutingTime,maxSproutingTime);
     }
 
     protected override void Update() {
         base.Update();
-        sproutingTimer += Time.deltaTime;
-        if(sproutingTimer > sTimeThreshold) {
+        if(timer > sTimeThreshold) {
             Sprout();
         }
     }

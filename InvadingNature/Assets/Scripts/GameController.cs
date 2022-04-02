@@ -23,6 +23,12 @@ public class GameController : MonoBehaviour
         //PLAYER
         player.Move(Input.GetAxis("Vertical"));
         player.Rotate(Input.mousePosition);
+        if(Input.GetKeyDown(KeyCode.LeftShift)) {
+            player.HighSpeed = true;
+        }
+        if(Input.GetKeyUp(KeyCode.LeftShift)) {
+            player.HighSpeed = false;
+        }
         if(Input.GetMouseButtonDown(0)) {
             RaycastHit[] hits;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

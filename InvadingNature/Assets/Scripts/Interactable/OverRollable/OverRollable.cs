@@ -13,14 +13,16 @@ public abstract class OverRollable : Interactable
     bool playerOnTop = false;
     public const string playerTag = "Player";
 
-    protected virtual void Start()
+    protected override void Start()
     {
+        base.Start();
         player = FindObjectOfType<Player>();
         Debug.Assert(player != null, "OverRollable was not able to find a Player in the Scene");
     }
 
-    protected virtual void Update()
+    protected override void Update()
     {
+        base.Update();
         if(playerOnTop && (player.moveSpeed > 0)) {
             float damage = (Time.deltaTime * rollOverDamage * (player.moveSpeed * movementSpeedFactor));
             health -= damage;

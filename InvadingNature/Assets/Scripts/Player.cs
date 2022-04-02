@@ -13,10 +13,18 @@ public class Player : MonoBehaviour
     public float interactionDistance = 3f;
     public float throwPower = 5f;
     public float throwUpPower = 4f;
+    private bool highSpeed;
+    public bool HighSpeed {
+        set { highSpeed = value; }
+    }
+    public float highSpeedFactor = 2f;
 
+    /// <summary>
+    /// The current Movement Speed
+    /// </summary>
     [HideInInspector] public float moveSpeed = 0f;
 
-    //TODO: Remove after Modell is there
+    //TODO: Remove after final Model is here
     public Transform carryPosition;
 
     /// <summary>
@@ -24,14 +32,16 @@ public class Player : MonoBehaviour
     /// </summary>
     private Carriable carry = null;
 
-    /// <summary>
-    /// Interactables that are currently below the player (there was a trigger Enter)
-    /// </summary>
-    List<Interactable> interactablesBelowPlayer = new List<Interactable>();
+    private void Start() {
+        highSpeed = false;
+    }
 
     public void Move(float vertical) {
         if(vertical != 0f) {
             moveSpeed = vertical * speed * Time.deltaTime;
+            if(highSpeed) {
+                moveSpeed *= highSpeedFactor;
+            }
             transform.Translate(transform.worldToLocalMatrix.MultiplyVector(transform.forward) * moveSpeed);
         } else {
             moveSpeed = 0f;
@@ -93,6 +103,7 @@ public class Player : MonoBehaviour
         c.transform.rotation = Quaternion.identity;
         c.transform.parent = carryPosition;
         carry = c;
+        carry.Carrying = true;
     }
 
     public void Throw(Vector3 target) {
@@ -102,7 +113,7 @@ public class Player : MonoBehaviour
         carry.transform.SetParent(carry.oldParent);
         Vector3 ThrowVector = ((target - transform.position) * throwPower) + (Vector3.up * throwUpPower);
         carry.GetComponent<Rigidbody>().AddForce(ThrowVector);
-
+        carry.Carrying = false;
         carry = null;
     }
 }
