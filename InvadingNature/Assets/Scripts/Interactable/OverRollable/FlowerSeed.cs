@@ -7,7 +7,7 @@ public class FlowerSeed : OverRollable
     private const string noGrowthTag = "NoGrowthZone";
 
     public List<GameObject> possibleSeedlings;
-    private BloomInfo bloom = new BloomInfo();
+    [HideInInspector] public PlantInfo plantInfo = null;
 
     //Sprouting
     public float minSproutingTime = 3f;
@@ -22,7 +22,6 @@ public class FlowerSeed : OverRollable
     public float noGrowthZoneDamage = 10f;
     int inNonGrowthZone = 0;
 
-
     protected override void Start() {
         base.Start();
         //How long will it take to sprout
@@ -36,15 +35,12 @@ public class FlowerSeed : OverRollable
         if(inNonGrowthZone > 0) {
             TakeDamage(Time.deltaTime * noGrowthZoneDamage);
         } else {
-            sproutingTimer += Time.deltaTime;
+            Debug.Assert(plantInfo != null, "PlantInfo has to be set");
+            sproutingTimer += (Time.deltaTime * plantInfo.GrowthFactor);
             if (sproutingTimer > sTimeThreshold) {
                 Sprout();
             }
         }
-    }
-
-    public void SetBloomColor(Color c) {
-        bloom.BloomColor = c;
     }
 
     private void Sprout() {
@@ -54,8 +50,9 @@ public class FlowerSeed : OverRollable
         GameObject nS = SpawnInPosition(s, s.transform);
         //Set some values
         FlowerSeedling fS = nS.GetComponentInChildren<FlowerSeedling>();
-        fS.health = health;
-        fS.bloom = bloom;
+        //Transfer the Damage to the next Phase
+        plantInfo.Damage = (int)(maxHealth - curHealth);
+        fS.plantInfo = plantInfo;
         Destroy(gameObject);
     }
 

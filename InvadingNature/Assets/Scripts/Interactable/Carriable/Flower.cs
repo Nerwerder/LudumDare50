@@ -28,13 +28,19 @@ public class Flower : Carriable
 
     //Common
     float tThreshold = 0f;
-    float timer = 0f;
+    float growthTimer = 0f;
 
-    //Blom
-    [HideInInspector] public BloomInfo bloom = null;
+    //Bloom
+    [HideInInspector] public PlantInfo plantInfo = null;
+
+
+    //Building Damage
+    private BuildingController buildingcontroller = null;
+    public float buildingDamagePerSecond = 1f;
+    private float accumulatedDamage = 0f;
 
     private void ResetTimer() {
-        timer = 0;
+        growthTimer = 0;
         if(nextPhase) {
             tThreshold = Random.Range(minPhaseTime, maxPhaseTime);
         } else if (seed) {
@@ -47,20 +53,32 @@ public class Flower : Carriable
     protected override void Start() {
         base.Start();
         ResetTimer();
+        //Death Timer
         dTimerThreshhold = Random.Range(minPhaseTime, maxDeathTime);
-        Debug.Assert(bloom != null, "Bloom has to be set");
-        gameObject.GetComponent<Renderer>().materials[2].color = bloom.BloomColor;
+        //Change the color of the Flower
+        Debug.Assert(plantInfo != null, "Bloom has to be set");
+        gameObject.GetComponent<Renderer>().materials[2].color = plantInfo.BloomColor;
+        //Get the nearest Building
+        buildingcontroller = FindObjectOfType<BuildingController>();
+        Debug.Assert(buildingcontroller, "Flower was not able to find the BuildingController");
     }
 
     void Update() {
         //Plant is in the Ground and alive
         if(!Carried && !Uprooted) {
-            timer += Time.deltaTime;
-            if (timer >= tThreshold) {
+            //Damage the nearest Building
+            accumulatedDamage += buildingDamagePerSecond * Time.deltaTime;
+            if(accumulatedDamage > 1f) {
+                buildingcontroller.DamageNearestBuilding(this, accumulatedDamage);
+                accumulatedDamage = 0f;
+            }
+            //Check for the next Phase and for reproduction
+            growthTimer += (Time.deltaTime * plantInfo.GrowthFactor);
+            if (growthTimer >= tThreshold) {
                 if (nextPhase) {
                     var go = SpawnInPosition(nextPhase);
-                    Debug.Assert(bloom != null, "Bloom has to be set");
-                    go.GetComponentInChildren<Flower>().bloom = bloom;
+                    Debug.Assert(plantInfo != null, "Bloom has to be set");
+                    go.GetComponentInChildren<Flower>().plantInfo = plantInfo;
                     Destroy(gameObject);
                 } else if (seed) {
                     SpawnSeed();
@@ -68,7 +86,6 @@ public class Flower : Carriable
                 }
             }
         }
-
         //Plant is on the Ground and dead
         if(!Carried && Uprooted) {
             deathTimer += Time.deltaTime;
@@ -90,8 +107,8 @@ public class Flower : Carriable
             Vector3 sSpawnPos = new Vector3(transform.position.x + xOffset, 0, transform.position.z + zOffset);
             var go = Instantiate(seed, sSpawnPos, Quaternion.identity, transform.parent);
             var fs = go.GetComponentInChildren<FlowerSeed>();
-            Debug.Assert(bloom != null, "Bloom has to be set");
-            fs.SetBloomColor(bloom.BloomColor);
+            Debug.Assert(plantInfo != null, "Bloom has to be set");
+            fs.plantInfo = new PlantInfo(plantInfo);
         }
     }
 }

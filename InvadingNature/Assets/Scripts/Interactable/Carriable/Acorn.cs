@@ -23,17 +23,23 @@ public class Acorn : Carriable
     /// </summary>
     int inNonGrowthZone = 0;
 
+    [HideInInspector] public PlantInfo plantInfo = null;
+
     protected override void Start() {
         base.Start();
         //How long will it take to sprout
         sTimeThreshold = Random.Range(minSproutingTime, maxSproutingTime);
+        Debug.Assert(plantInfo != null, "No PlantInfo in Acorn");
     }
 
     void Update() {
         if (inNonGrowthZone == 0 && !Carried) {
-            sproutingTimer += Time.deltaTime;
+            sproutingTimer += (Time.deltaTime * plantInfo.GrowthFactor);
             if (sproutingTimer > sTimeThreshold) {
-                SpawnInPosition(sapling);
+                var go = SpawnInPosition(sapling);
+                var sa = go.GetComponent<OakSapling>();
+                Debug.Assert(sa, "No sapling in sapling?");
+                sa.plantInfo = plantInfo;
                 Destroy(gameObject);
             }
         }

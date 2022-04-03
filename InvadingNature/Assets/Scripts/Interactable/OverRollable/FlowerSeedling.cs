@@ -11,16 +11,17 @@ public class FlowerSeedling : OverRollable
     float pTimerThreshold = 0f;
     float phaseTimer = 0f;
 
-    [HideInInspector] public BloomInfo bloom;
+    [HideInInspector] public PlantInfo plantInfo = null;
 
     protected override void Start() {
         base.Start();
         pTimerThreshold = Random.Range(minPhaseTime, maxPhaseTime);
+        TakeDamage((float)plantInfo.Damage);
     }
 
     protected override void Update() {
         base.Update();
-        phaseTimer += Time.deltaTime;
+        phaseTimer += (Time.deltaTime * plantInfo.GrowthFactor);
         if (phaseTimer > pTimerThreshold) {
             NextPhase();
         }
@@ -29,12 +30,13 @@ public class FlowerSeedling : OverRollable
     public void NextPhase() {
         GameObject np = SpawnInPosition(nextPhase);
         FlowerSeedling seedling = np.GetComponentInChildren<FlowerSeedling>();
-        if(seedling) {
-            seedling.bloom = bloom;
+        plantInfo.Damage = (int)(maxHealth - curHealth);
+        if (seedling) {
+            seedling.plantInfo = plantInfo;
         }
         Flower flower = np.GetComponentInChildren<Flower>();
         if(flower) {
-            flower.bloom = bloom;
+            flower.plantInfo = plantInfo;
         }
         Destroy(gameObject);
     }

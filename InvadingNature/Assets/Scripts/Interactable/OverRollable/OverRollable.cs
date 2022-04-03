@@ -5,7 +5,8 @@ using UnityEngine;
 public abstract class OverRollable : Interactable
 {
     //Health
-    public float health = 100f;
+    public float maxHealth = 100f;
+    public float curHealth = 100f;
     public float rollOverDamage = 40f;
     public float movementSpeedFactor = 100f;
     //Player
@@ -36,8 +37,8 @@ public abstract class OverRollable : Interactable
     }
 
     protected void TakeDamage(float damage) {
-        health -= damage;
-        if (health <= 0f) {
+        curHealth -= damage;
+        if (curHealth <= 0f) {
             Destroy(gameObject);
         }
     }

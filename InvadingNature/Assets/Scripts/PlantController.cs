@@ -16,6 +16,7 @@ public class PlantController : MonoBehaviour
     //TREES
     public bool enableTrees = true;
     public GameObject acorn;
+    public List<Color> leafColors;
     private float acornTimer = 0f;
     private float aTimerThreshold = 0f;
     public float acornMinTime = 3f;
@@ -23,6 +24,7 @@ public class PlantController : MonoBehaviour
 
     //All
     public float spawnRadius = 5f;
+    public float growthFactor = 1f;
 
     void Start()
     {
@@ -36,11 +38,10 @@ public class PlantController : MonoBehaviour
         if(enableFlowers) {
             flowerTimer += Time.deltaTime;
             if (flowerTimer > fTimerThreshold) {
-                var gm = Spawn(seedling);
+                var go = Spawn(seedling);
                 var col = bloomColors[Random.Range(0, bloomColors.Count)];
-                var seed = gm.GetComponentInChildren<FlowerSeed>();
-                Debug.Assert(seed, "No FlowerSeed in Spawned FlowerSeed?");
-                seed.SetBloomColor(col);
+                var seed = go.GetComponentInChildren<FlowerSeed>();
+                seed.plantInfo = new PlantInfo(col, growthFactor);
                 ResetFlowerTimer();
             }
         }
@@ -49,7 +50,10 @@ public class PlantController : MonoBehaviour
         if(enableTrees) {
             acornTimer += Time.deltaTime;
             if (acornTimer > aTimerThreshold) {
-                Spawn(acorn);
+                var go = Spawn(acorn);
+                var col = leafColors[Random.Range(0, leafColors.Count)];
+                var acn = go.GetComponentInChildren<Acorn>();
+                acn.plantInfo = new PlantInfo(col, growthFactor);
                 ResetAcornTimer();
             }
         }
