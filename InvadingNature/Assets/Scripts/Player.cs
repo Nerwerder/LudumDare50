@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public float interactionDistance = 3f;
     public float throwPower = 5f;
     public float throwUpFactor = 4f;
-    private bool highSpeed;
+    private bool highSpeed = false;
     public bool HighSpeed {
         set { highSpeed = value; }
     }
@@ -30,14 +30,20 @@ public class Player : MonoBehaviour
     /// </summary>
     private Carriable carry = null;
 
+    /// <summary>
+    /// The Generator provides the Player with Energy for highSpeed
+    /// </summary>
+    private Generator generator = null;
+
     private void Start() {
-        highSpeed = false;
+        generator = FindObjectOfType<Generator>();
+        Debug.Assert(generator, "Player was not able to find the Generator");
     }
 
     public void Move(float vertical) {
         if(vertical != 0f) {
             moveSpeed = vertical * speed * Time.deltaTime;
-            if(highSpeed) {
+            if(highSpeed && generator.On) {
                 moveSpeed *= highSpeedFactor;
             }
             transform.Translate(transform.worldToLocalMatrix.MultiplyVector(transform.forward) * moveSpeed);
