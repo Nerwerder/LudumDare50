@@ -27,6 +27,14 @@ public abstract class OverRollable : Interactable
         }
     }
 
+    public override void InteractWithPlayer(Player p) {
+        //Nothing
+    }
+
+    public override void InteractWithItem(Carriable c) {
+        //Nothing
+    }
+
     protected void TakeDamage(float damage) {
         health -= damage;
         if (health <= 0f) {

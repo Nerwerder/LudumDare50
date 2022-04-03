@@ -54,7 +54,7 @@ public class Tree : Interactable
         if(timer >= timerThreshold) {
             if(nextPhase) {
                 SpawnInPosition(nextPhase);
-                Destroy(transform.parent.gameObject);
+                Destroy(gameObject);
             } else if (acorn) {
                 SpawnInRange(acorn, acornSpawnRange, 3f);
                 ResetTimer();
@@ -66,10 +66,10 @@ public class Tree : Interactable
 
     private void SpawnInRange(GameObject g, float range, float height) {
         Vector3 aSpawnPos = new Vector3(transform.position.x + Random.Range(-range,range), height, transform.position.z * Random.Range(-range,range));
-        Instantiate(g, aSpawnPos, Quaternion.identity, transform.parent.parent);
+        Instantiate(g, aSpawnPos, Quaternion.identity, transform.parent);
     }
 
-    public override void Interact(Player p) {
+    public override void InteractWithPlayer(Player p) {
         if(++hits >= hitsToCutDown) {
             CutDown();
         }
@@ -84,10 +84,10 @@ public class Tree : Interactable
         for(int k = 0; k < spawnedAcornsOnDeath; ++k) {
             SpawnInRange(acorn, acornSpawnRange, 1f);
         }
-        Destroy(transform.parent.gameObject);
+        Destroy(gameObject);
     }
 
-    public override void InteractWith(Interactable o) {
+    public override void InteractWithItem(Carriable o) {
         //Nothing
     }
 }

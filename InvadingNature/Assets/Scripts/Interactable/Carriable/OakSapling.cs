@@ -31,12 +31,12 @@ public class OakSapling : Carriable
                 timer += Time.deltaTime;
                 if (timer >= treeTimeThreshold) {
                     SpawnInPosition(tree);
-                    Destroy(transform.parent.gameObject);
+                    Destroy(gameObject);
                 }
             } else {
                 deathTimer += Time.deltaTime;
                 if (deathTimer >= dTimerThreshhold) {
-                    Destroy(transform.parent.gameObject);
+                    Destroy(gameObject);
                 }
             }
         }

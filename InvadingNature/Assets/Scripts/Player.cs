@@ -7,8 +7,6 @@ using UnityEngine;
 /// </summary>
 public class Player : MonoBehaviour
 {
-    public const string interactableTag = "Interactable";
-
     public float speed = 1f;
     public float interactionDistance = 3f;
     public float throwPower = 5f;
@@ -74,7 +72,7 @@ public class Player : MonoBehaviour
         List<Interactable> interactables = new List<Interactable>();
         Vector3 hitPoint = Vector3.zero;
         foreach (RaycastHit hit in hits) {
-            if (hit.transform.tag == interactableTag && InInteractionDistance(hit.transform)) {
+            if (hit.transform.tag == Interactable.interactableTag && InInteractionDistance(hit.transform)) {
                 interactables.Add(hit.transform.gameObject.GetComponent<Interactable>());
             } else {
                 hitPoint = hit.point;
@@ -84,39 +82,38 @@ public class Player : MonoBehaviour
         if (interactables.Count != 0) {
             foreach(Interactable i in interactables) {
                 if(carry) {
-                    i.InteractWith(carry);
+                    i.InteractWithItem(carry);
                 } else {
-                    i.Interact(this);
+                    i.InteractWithPlayer(this);
                 }
             }
         } else {
             if(carry) {
-                Throw(hitPoint);
+                ThrowItem(hitPoint);
             }
         }
     }
 
-    public void CarryMe(Carriable c) {
+    public void CarryItem(Carriable c) {
         Debug.Assert(!carry, "Cannot carry multiple things");
-        c.GetComponent<Rigidbody>().isKinematic = true;
-        c.transform.position = carryPosition.transform.position;
-        c.transform.rotation = Quaternion.identity;
-        c.transform.parent = carryPosition;
+        c.UpdateTransform(carryPosition.transform.position, Quaternion.identity, carryPosition);
         carry = c;
-        carry.Carried = true;
     }
 
-    public void Throw(Vector3 target) {
+    public void ThrowItem(Vector3 target) {
         Debug.Assert(carry, "Throwing requires a carry");
+        carry.Release();
 
-        carry.GetComponent<Rigidbody>().isKinematic = false;
-        carry.transform.SetParent(carry.oldParent);
-        Vector3 throwVector = ((target - transform.position) * throwPower);
         //Add some up so we get a nice arch
+        Vector3 throwVector = ((target - transform.position) * throwPower);
         throwVector += Vector3.up * throwVector.magnitude * throwUpFactor;
-        //TODO: Maybe use a fixed arch instead of a Force
         carry.GetComponent<Rigidbody>().AddForce(throwVector);
-        carry.Carried = false;
+        carry = null;
+    }
+
+    public void ReleaseItem() {
+        Debug.Assert(carry, "Releasing requires a carry");
+        carry.Release();
         carry = null;
     }
 }

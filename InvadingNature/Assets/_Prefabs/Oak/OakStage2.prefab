@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6217000850808635332
+--- !u!1 &181740824565238503
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,95 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6704991201609622910}
-  - component: {fileID: 7684040830474037979}
-  - component: {fileID: 5568636229220589073}
-  - component: {fileID: 1606603079}
-  - component: {fileID: 1606603080}
-  - component: {fileID: 1606603081}
+  - component: {fileID: 181740824565238500}
+  - component: {fileID: 181740824565238501}
   m_Layer: 0
-  m_Name: OakStage3
-  m_TagString: Interactable
+  m_Name: Spacer
+  m_TagString: NoGrowthZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6704991201609622910
+--- !u!4 &181740824565238500
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6217000850808635332}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0853374, y: 1.0853374, z: 1.0853374}
+  m_GameObject: {fileID: 181740824565238503}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.03333333, z: 0}
+  m_LocalScale: {x: 1.6666666, y: 1.6666666, z: 1.6666666}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 1019022250193141170}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &181740824565238501
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181740824565238503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &391703194713679624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1019022250193141170}
+  - component: {fileID: 4146567049905451543}
+  - component: {fileID: 2193085389259196125}
+  - component: {fileID: 2106025156}
+  - component: {fileID: 2106025157}
+  - component: {fileID: 2106025158}
+  m_Layer: 0
+  m_Name: OakStage2
+  m_TagString: Interactable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1019022250193141170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391703194713679624}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 181740824565238500}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7684040830474037979
+--- !u!33 &4146567049905451543
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6217000850808635332}
-  m_Mesh: {fileID: 2866559604913249729, guid: 43edbe2f477791047a5dd759786b8764, type: 3}
---- !u!23 &5568636229220589073
+  m_GameObject: {fileID: 391703194713679624}
+  m_Mesh: {fileID: -7913392110619565600, guid: 9a06222451a4952438a67034ab29d13d, type: 3}
+--- !u!23 &2193085389259196125
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6217000850808635332}
+  m_GameObject: {fileID: 391703194713679624}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -64,8 +110,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1444460858095362738, guid: 43edbe2f477791047a5dd759786b8764, type: 3}
-  - {fileID: -4006148316881293267, guid: 43edbe2f477791047a5dd759786b8764, type: 3}
+  - {fileID: -1444460858095362738, guid: 9a06222451a4952438a67034ab29d13d, type: 3}
+  - {fileID: -4006148316881293267, guid: 9a06222451a4952438a67034ab29d13d, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,26 +133,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1606603079
+--- !u!65 &2106025156
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6217000850808635332}
+  m_GameObject: {fileID: 391703194713679624}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.42673233, y: 1.7904787, z: 0.29569656}
-  m_Center: {x: -0.048843767, y: 0.79524016, z: 0.007007849}
---- !u!54 &1606603080
+  m_Size: {x: 0.33821672, y: 1.303618, z: 0.25806645}
+  m_Center: {x: -0.07408991, y: 0.6124063, z: -0.0015748454}
+--- !u!54 &2106025157
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6217000850808635332}
+  m_GameObject: {fileID: 391703194713679624}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -116,22 +162,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1606603081
+--- !u!114 &2106025158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6217000850808635332}
+  m_GameObject: {fileID: 391703194713679624}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d78c27e6260bb9419ce3689164d1f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPhase: {fileID: 4871668872342669340, guid: f93e6adb6fe8f5d43a040515559af746, type: 3}
-  minPhaseTime: 10
-  maxPhaseTime: 14
-  acorn: {fileID: 0}
+  interactableType: 0
+  nextPhase: {fileID: 6217000850808635332, guid: 124a64cdafc899543ade9b51fd3098de, type: 3}
+  minPhaseTime: 7
+  maxPhaseTime: 10
+  acorn: {fileID: 4675819142119365460, guid: c63ffca96c671714a9a291b4d70b7243, type: 3}
   minAcornSpawnTime: 2
   maxAcornSpawnTime: 4
   minSpawnedAcornOnDeath: 3
@@ -139,5 +186,6 @@ MonoBehaviour:
   acornSpawnRange: 2
   hitsToCutDown: 2
   wood: {fileID: 4677911209156352352, guid: 389517944217a324cbdaed48f494d952, type: 3}
-  spawnedWoodOnDeath: 2
+  spawnedWoodOnDeath: 1
+  spawnedAcornsOnDeath: 2
   woodSpawnRange: 1

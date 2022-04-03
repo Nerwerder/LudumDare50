@@ -36,14 +36,6 @@ public class FlowerSeedling : OverRollable
         if(flower) {
             flower.bloom = bloom;
         }
-        Destroy(transform.parent.gameObject);
-    }
-
-    public override void Interact(Player p) {
-        //Nothing
-    }
-
-    public override void InteractWith(Interactable o) {
-        //Nothing
+        Destroy(gameObject);
     }
 }

@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Generator : Interactable
 {
-    public override void Interact(Player p) {
-        //Nothing
+    public float fuel = 0f;
+
+    public override void InteractWithItem(Carriable c) {
+        if(c.burnable) {
+            fuel += c.burnValue;
+            c.Burn();
+        }
     }
 
-    public override void InteractWith(Interactable o) {
-        //TODO: Feed wood or plants to the generator
+    public override void InteractWithPlayer(Player p) {
+        //Nothing
     }
 }

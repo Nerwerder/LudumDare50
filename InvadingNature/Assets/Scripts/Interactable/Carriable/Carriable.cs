@@ -22,6 +22,8 @@ public abstract class Carriable : Interactable
         get { return carried; }
     }
 
+    private Player carryingPlayer = null;
+
     bool uprooted = false;
     /// <summary>
     /// Was this object once carried
@@ -30,15 +32,52 @@ public abstract class Carriable : Interactable
         get { return uprooted; }
     }
 
+    //Most Carriables can be trown in/at the Generator
+    public bool burnable = true;
+    public float burnValue = 1f;
+
+    public void Burn() {
+        if(carried) {
+            //Get back from the player
+            carryingPlayer.ReleaseItem();
+        }
+        Destroy(gameObject);
+    }
+
     protected virtual void Start() {
         oldParent = transform.parent;
     }
 
-    public override void Interact(Player p) {
-        p.CarryMe(this);
+    public override void InteractWithPlayer(Player p) {
+        GetComponent<Rigidbody>().isKinematic = true;
+        Carried = true;
+        carryingPlayer = p;
+        p.CarryItem(this);
     }
 
-    public override void InteractWith(Interactable o) {
+    public void UpdateTransform(Vector3 position, Quaternion rotation, Transform parent) {
+        transform.position = position;
+        transform.rotation = rotation;
+        transform.parent = parent;
+    }
+
+    public void Release() {
+        GetComponent<Rigidbody>().isKinematic = false;
+        transform.SetParent(oldParent);
+        Carried = false;
+        carryingPlayer = null;
+    }
+
+    public override void InteractWithItem(Carriable c) {
         //Nothing
+    }
+
+    public virtual void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == interactableTag) {
+            var i = other.GetComponent<Interactable>();
+            if(i.interactableType == InteractableType.Generator) {
+                i.InteractWithItem(this);
+            }
+        }
     }
 }
