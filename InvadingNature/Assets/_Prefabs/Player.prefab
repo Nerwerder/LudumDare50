@@ -409,12 +409,12 @@ MonoBehaviour:
   speed: 4
   interactionDistance: 3
   throwPower: 50
-  throwUpPower: 300
-  highSpeedFactor: 2
+  throwUpFactor: 0.45
+  highSpeedFactor: 3
   moveSpeed: 0
   carryPosition: {fileID: 8136241674058745250}
---- !u!136 &1937893119
-CapsuleCollider:
+--- !u!65 &1937893119
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -423,10 +423,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.73373663
-  m_Height: 1.9558777
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.24769098, z: 0.13605559}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.7406437, z: 1.0931935}
+  m_Center: {x: 0, y: -0.37032235, z: 0.21336433}
 --- !u!1 &8136241674058745251
 GameObject:
   m_ObjectHideFlags: 0

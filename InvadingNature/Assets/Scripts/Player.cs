@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float speed = 1f;
     public float interactionDistance = 3f;
     public float throwPower = 5f;
-    public float throwUpPower = 4f;
+    public float throwUpFactor = 4f;
     private bool highSpeed;
     public bool HighSpeed {
         set { highSpeed = value; }
@@ -111,8 +111,11 @@ public class Player : MonoBehaviour
 
         carry.GetComponent<Rigidbody>().isKinematic = false;
         carry.transform.SetParent(carry.oldParent);
-        Vector3 ThrowVector = ((target - transform.position) * throwPower) + (Vector3.up * throwUpPower);
-        carry.GetComponent<Rigidbody>().AddForce(ThrowVector);
+        Vector3 throwVector = ((target - transform.position) * throwPower);
+        //Add some up so we get a nice arch
+        throwVector += Vector3.up * throwVector.magnitude * throwUpFactor;
+        //TODO: Maybe use a fixed arch instead of a Force
+        carry.GetComponent<Rigidbody>().AddForce(throwVector);
         carry.Carried = false;
         carry = null;
     }

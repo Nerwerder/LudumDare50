@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1606603081}
   m_Layer: 0
   m_Name: OakStage3
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   minSpawnedAcornOnDeath: 3
   maxSpawnedAcornOnDeath: 7
   acornSpawnRange: 2
-  Wood: {fileID: 0}
-  minSpawnedWoodOnDeath: 2
-  maxSpawnedWoodOnDeadth: 3
+  hitsToCutDown: 2
+  wood: {fileID: 4677911209156352352, guid: 389517944217a324cbdaed48f494d952, type: 3}
+  spawnedWoodOnDeath: 2
   woodSpawnRange: 1
