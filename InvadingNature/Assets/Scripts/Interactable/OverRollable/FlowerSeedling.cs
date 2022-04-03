@@ -4,23 +4,39 @@ using UnityEngine;
 
 public class FlowerSeedling : OverRollable
 {
+    //Phase
     public GameObject nextPhase;
     public float minPhaseTime = 2f;
     public float maxPhaseTime = 4f;
-    float fTimerThreshold = 0f;
-    float timer = 0f;
+    float pTimerThreshold = 0f;
+    float phaseTimer = 0f;
+
+    [HideInInspector] public BloomInfo bloom;
 
     protected override void Start() {
         base.Start();
-        fTimerThreshold = Random.Range(minPhaseTime, maxPhaseTime);
+        pTimerThreshold = Random.Range(minPhaseTime, maxPhaseTime);
     }
 
     protected override void Update() {
         base.Update();
-        timer += Time.deltaTime;
-        if (timer > fTimerThreshold) {
-            TurnInto(nextPhase);
+        phaseTimer += Time.deltaTime;
+        if (phaseTimer > pTimerThreshold) {
+            NextPhase();
         }
+    }
+
+    public void NextPhase() {
+        GameObject np = SpawnInPosition(nextPhase, transform.parent.parent);
+        FlowerSeedling seedling = np.GetComponentInChildren<FlowerSeedling>();
+        if(seedling) {
+            seedling.bloom = bloom;
+        }
+        Flower flower = np.GetComponentInChildren<Flower>();
+        if(flower) {
+            flower.bloom = bloom;
+        }
+        Destroy(transform.parent.gameObject);
     }
 
     public override void Interact(Player p) {

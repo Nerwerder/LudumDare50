@@ -26,7 +26,7 @@ public class Tree : Interactable
             ResetTimer();
             SpawnAcorn();
         } else if(nextStage != null && (timer > sTimerThreshold)) {
-            TurnInto(nextStage.gameObject);
+            //TurnInto(nextStage.gameObject);
         }
     }
 

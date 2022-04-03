@@ -7,6 +7,8 @@ public class FlowerSeed : OverRollable
     private const string noGrowthTag = "NoGrowthZone";
 
     public List<GameObject> possibleSeedlings;
+    private BloomInfo bloom = new BloomInfo();
+
     //Sprouting
     public float minSproutingTime = 3f;
     public float maxSproutingTime = 5f;
@@ -23,7 +25,10 @@ public class FlowerSeed : OverRollable
 
     protected override void Start() {
         base.Start();
+        //How long will it take to sprout
         sTimeThreshold = Random.Range(minSproutingTime,maxSproutingTime);
+        //Rotate
+        transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
     }
 
     protected override void Update() {
@@ -38,12 +43,20 @@ public class FlowerSeed : OverRollable
         }
     }
 
+    public void SetBloomColor(Color c) {
+        bloom.BloomColor = c;
+    }
+
     private void Sprout() {
         //Choose a random seedling
         GameObject s= possibleSeedlings[Random.Range(0, possibleSeedlings.Count)];
-        GameObject nS = Instantiate(s, transform.position, Quaternion.identity, transform.parent);
-        nS.GetComponentInChildren<FlowerSeedling>().health  = health; //Keep the health
-        Destroy(gameObject);
+        //Spawn it
+        GameObject nS = SpawnInPosition(s, transform.parent.parent);
+        //Set some values
+        FlowerSeedling fS = nS.GetComponentInChildren<FlowerSeedling>();
+        fS.health = health;
+        fS.bloom = bloom;
+        Destroy(transform.parent.gameObject);//Rather ugly
     }
 
     public override void Interact(Player p) {

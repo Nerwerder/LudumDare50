@@ -25,10 +25,10 @@ public abstract class Interactable : MonoBehaviour
     /// <param name="o"></param>
     public abstract void InteractWith(Interactable o);
 
-    protected void TurnInto(GameObject g) {
+    protected GameObject SpawnInPosition(GameObject g, Transform parent) {
         Vector3 nPos = transform.position;
         nPos.y = g.transform.position.y;
-        Instantiate(g, nPos, Quaternion.identity, transform.parent);    //TODO: give Parent
-        Destroy(gameObject);
+        GameObject gm = Instantiate(g, nPos, transform.rotation, parent);
+        return gm;
     }
 }

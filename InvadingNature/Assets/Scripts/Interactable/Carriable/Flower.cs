@@ -12,7 +12,7 @@ public class Flower : Carriable
     public float minPhaseTime = 2f;
     public float maxPhaseTime = 4f;
 
-    //Spawn Seed - Living Plant
+    //Spawn Seeds
     public GameObject seed = null;
     public float minSeedSpawnTime = 2f;
     public float maxSeedSpawnTime = 4f;
@@ -30,6 +30,9 @@ public class Flower : Carriable
     float tThreshold = 0f;
     float timer = 0f;
 
+    //Blom
+    [HideInInspector] public BloomInfo bloom;
+
     private void ResetTimer() {
         timer = 0;
         if(nextPhase) {
@@ -45,6 +48,8 @@ public class Flower : Carriable
         base.Start();
         ResetTimer();
         dTimerThreshhold = Random.Range(minPhaseTime, maxDeathTime);
+        //This is ... not nice
+        gameObject.GetComponent<Renderer>().materials[2].color = bloom.BloomColor;
     }
 
     void Update() {
@@ -53,7 +58,9 @@ public class Flower : Carriable
             timer += Time.deltaTime;
             if (timer >= tThreshold) {
                 if (nextPhase) {
-                    TurnInto(nextPhase);
+                    var go = SpawnInPosition(nextPhase, transform.parent.parent);
+                    go.GetComponentInChildren<Flower>().bloom = bloom;
+                    Destroy(transform.parent.gameObject);
                 } else if (seed) {
                     SpawnSeed();
                     ResetTimer();
@@ -69,7 +76,7 @@ public class Flower : Carriable
                 for(int k = 0; k < spawned; ++k) {
                     SpawnSeed();
                 }
-                Destroy(gameObject);
+                Destroy(transform.parent.gameObject);
             }
         }
 
@@ -80,7 +87,9 @@ public class Flower : Carriable
             float xOffset = Random.Range(-seedSpawnRange, seedSpawnRange);
             float zOffset = Random.Range(-seedSpawnRange, seedSpawnRange);
             Vector3 sSpawnPos = new Vector3(transform.position.x + xOffset, 0, transform.position.z + zOffset);
-            Instantiate(seed, sSpawnPos, Quaternion.identity, transform.parent);
+            var go = Instantiate(seed, sSpawnPos, Quaternion.identity, transform.parent.parent);
+            var fs = go.GetComponentInChildren<FlowerSeed>();
+            fs.SetBloomColor(bloom.BloomColor);
         }
     }
 

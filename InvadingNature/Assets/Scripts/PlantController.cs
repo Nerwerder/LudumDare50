@@ -7,6 +7,7 @@ public class PlantController : MonoBehaviour
     //FLOWERS
     public bool enableFlowers = true;
     public GameObject seedling;
+    public List<Color> bloomColors;
     private float flowerTimer = 0f;
     private float fTimerThreshold = 0f;
     public float flowerMinTime = 0f;
@@ -35,7 +36,11 @@ public class PlantController : MonoBehaviour
         if(enableFlowers) {
             flowerTimer += Time.deltaTime;
             if (flowerTimer > fTimerThreshold) {
-                Spawn(seedling);
+                var gm = Spawn(seedling);
+                var col = bloomColors[Random.Range(0, bloomColors.Count)];
+                var seed = gm.GetComponentInChildren<FlowerSeed>();
+                Debug.Assert(seed, "No FlowerSeed in Spawned FlowerSeed?");
+                seed.SetBloomColor(col);
                 ResetFlowerTimer();
             }
         }
@@ -54,8 +59,8 @@ public class PlantController : MonoBehaviour
         return new Vector3(spawnRadius * Random.Range(-1f, 1f), transform.position.y, spawnRadius * Random.Range(-1f, 1f));
     }
 
-    private void Spawn(GameObject g) {
-        Instantiate(g, GetRandomPositionInRange(), Quaternion.identity, transform);
+    private GameObject Spawn(GameObject g) {
+        return Instantiate(g, GetRandomPositionInRange(), Quaternion.identity, transform);
     }
 
     private void ResetFlowerTimer() {

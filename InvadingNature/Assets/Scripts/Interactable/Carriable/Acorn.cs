@@ -21,7 +21,7 @@ public class Acorn : Carriable
     void Update() {
         timer += Time.deltaTime;
         if (timer > treeTimeThreshold) {
-            TurnInto(tree.gameObject);
+            //TurnInto(tree.gameObject);
         }
     }
 
