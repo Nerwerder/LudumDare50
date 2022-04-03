@@ -45,16 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableFlowers: 1
-  seedling: {fileID: 1715621225531564420, guid: 7bf1554ac0cc0e243a325dbb8c726c2f, type: 3}
+  seedling: {fileID: 9164951500560297610, guid: 7bf1554ac0cc0e243a325dbb8c726c2f, type: 3}
   bloomColors:
   - {r: 0.8396226, g: 0.31287822, b: 0.31287822, a: 0}
   - {r: 0.7924528, g: 0.46253344, b: 0.13082945, a: 0}
   - {r: 0.6029242, g: 0.05371129, b: 0.6698113, a: 0}
   - {r: 0.7285508, g: 0.7830189, b: 0.09972411, a: 0}
+  - {r: 0.2063724, g: 0.20754719, b: 0.19286224, a: 0}
   flowerMinTime: 4
   flowerMaxTime: 9
-  enableTrees: 0
-  acorn: {fileID: 3132837966320858445, guid: 3cc2e7e3b18341d4a957c33f66c656a9, type: 3}
-  acornMinTime: 4
-  acornMaxTime: 5
+  enableTrees: 1
+  acorn: {fileID: 1444633447820143989, guid: d4fedc4f37489ff44b4d504ef5afe04a, type: 3}
+  acornMinTime: 6
+  acornMaxTime: 12
   spawnRadius: 15

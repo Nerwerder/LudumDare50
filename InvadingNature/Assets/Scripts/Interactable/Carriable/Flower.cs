@@ -58,7 +58,7 @@ public class Flower : Carriable
             timer += Time.deltaTime;
             if (timer >= tThreshold) {
                 if (nextPhase) {
-                    var go = SpawnInPosition(nextPhase, transform.parent.parent);
+                    var go = SpawnInPosition(nextPhase);
                     go.GetComponentInChildren<Flower>().bloom = bloom;
                     Destroy(transform.parent.gameObject);
                 } else if (seed) {
@@ -91,13 +91,5 @@ public class Flower : Carriable
             var fs = go.GetComponentInChildren<FlowerSeed>();
             fs.SetBloomColor(bloom.BloomColor);
         }
-    }
-
-    public override void Interact(Player p) {
-        p.CarryMe(this);
-    }
-
-    public override void InteractWith(Interactable o) {
-        //Nothing
     }
 }

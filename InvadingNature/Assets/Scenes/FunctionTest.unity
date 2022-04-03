@@ -441,6 +441,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e3521a03dd3ee46a734db38723d7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1937893114 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6327848836937556750, guid: 9036fc6393c0047429aad500cb0f25ce, type: 3}
+  m_PrefabInstance: {fileID: 8742096035554987}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1937893119
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937893114}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.7406437, z: 1.0931935}
+  m_Center: {x: 0, y: -0.37032235, z: 0.21336433}
 --- !u!1 &1942169768
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +611,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1937893119, guid: 9036fc6393c0047429aad500cb0f25ce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9036fc6393c0047429aad500cb0f25ce, type: 3}
 --- !u!1001 &2133502017576977690
 PrefabInstance:

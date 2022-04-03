@@ -9,7 +9,7 @@ public abstract class Carriable : Interactable
     /// </summary>
     [HideInInspector] public Transform oldParent = null;
 
-    protected bool carried = false;
+    private bool carried = false;
     /// <summary>
     /// Is this object currently carried
     /// </summary>
@@ -34,4 +34,11 @@ public abstract class Carriable : Interactable
         oldParent = transform.parent;
     }
 
+    public override void Interact(Player p) {
+        p.CarryMe(this);
+    }
+
+    public override void InteractWith(Interactable o) {
+        //Nothing
+    }
 }

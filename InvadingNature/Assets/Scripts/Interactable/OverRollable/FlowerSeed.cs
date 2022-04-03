@@ -51,7 +51,7 @@ public class FlowerSeed : OverRollable
         //Choose a random seedling
         GameObject s= possibleSeedlings[Random.Range(0, possibleSeedlings.Count)];
         //Spawn it
-        GameObject nS = SpawnInPosition(s, transform.parent.parent);
+        GameObject nS = SpawnInPosition(s, transform.parent.parent, s.transform);
         //Set some values
         FlowerSeedling fS = nS.GetComponentInChildren<FlowerSeedling>();
         fS.health = health;

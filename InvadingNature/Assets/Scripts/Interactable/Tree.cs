@@ -4,16 +4,38 @@ using UnityEngine;
 
 public class Tree : Interactable
 {
-    public Tree nextStage = null;
-    public Acorn acorn = null;
-    public float minStageTime = 5f;
-    public float maxStageTime = 10f;
-    float sTimerThreshold = 0f;
+    //Phase
+    public GameObject nextPhase = null;
+    public float minPhaseTime = 2f;
+    public float maxPhaseTime = 4f;
+
+    //Spawn Acorns
+    public GameObject acorn = null;
+    public float minAcornSpawnTime = 2f;
+    public float maxAcornSpawnTime = 4f;
+    public int minSpawnedAcornOnDeath = 3;
+    public int maxSpawnedAcornOnDeath = 7;
+    public float acornSpawnRange = 2f;
+
+    //Spawn Wood
+    public GameObject Wood = null;
+    public int minSpawnedWoodOnDeath = 2;
+    public int maxSpawnedWoodOnDeadth = 3;
+    public float woodSpawnRange = 1f;
+
+    //Timer
+    float timerThreshold = 0f;
     float timer = 0f;
 
     private void ResetTimer() {
         timer = 0f;
-        sTimerThreshold = Random.Range(minStageTime, maxStageTime);
+        if(nextPhase) {
+            timerThreshold = Random.Range(minPhaseTime, maxPhaseTime);
+        } else if (acorn) {
+            timerThreshold = Random.Range(minAcornSpawnTime, maxAcornSpawnTime);
+        } else {
+            Debug.Assert(false, "Tree without nextPhase or ability to spawn Acorns was not expected");
+        }
     }
 
     private void Start() {
@@ -22,11 +44,16 @@ public class Tree : Interactable
 
     private void Update() {
         timer += Time.deltaTime;
-        if (nextStage == null && (timer > sTimerThreshold)) {
-            ResetTimer();
-            SpawnAcorn();
-        } else if(nextStage != null && (timer > sTimerThreshold)) {
-            //TurnInto(nextStage.gameObject);
+        if(timer >= timerThreshold) {
+            if(nextPhase) {
+                SpawnInPosition(nextPhase);
+                Destroy(transform.parent.gameObject);
+            } else if (acorn) {
+                SpawnAcorn();
+                ResetTimer();
+            } else {
+                Debug.Assert(false, "Tree without nextPhase or ability to spawn Acorns was not expected");
+            }
         }
     }
 

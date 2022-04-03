@@ -25,10 +25,18 @@ public abstract class Interactable : MonoBehaviour
     /// <param name="o"></param>
     public abstract void InteractWith(Interactable o);
 
-    protected GameObject SpawnInPosition(GameObject g, Transform parent) {
-        Vector3 nPos = transform.position;
-        nPos.y = g.transform.position.y;
-        GameObject gm = Instantiate(g, nPos, transform.rotation, parent);
+    /// <summary>
+    /// Spawn a Object in the position of this Object with the given parent
+    /// </summary>
+    /// <param name="g"> The GameObject to instantiate </param>
+    /// <param name="parentOverride"> Per default the parent of the parent of this element will be the parent of the new one </param>
+    /// <param name="rotationOverride"> Per default the rotation of the current object will be used for the new one </param>
+    /// <returns></returns>
+    protected GameObject SpawnInPosition(GameObject g, Transform parentOverride = null, Transform rotationOverride = null) {
+        Vector3 nPos = new Vector3(transform.position.x, g.transform.position.y, transform.position.z);
+        Transform rt = rotationOverride ? rotationOverride : transform;
+        Transform pt = parentOverride ? parentOverride : transform.parent.parent;
+        GameObject gm = Instantiate(g, nPos, rt.rotation, pt);
         return gm;
     }
 }

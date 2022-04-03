@@ -150,10 +150,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlowerStage3
       objectReference: {fileID: 0}
-    - target: {fileID: 7763711304417357868, guid: e9ebcc61cc8b81844afb1be47c3a7867, type: 3}
-      propertyPath: bloomMaterial
-      value: 
-      objectReference: {fileID: 3494362716898213784, guid: 69fa9517992c26942b0f2a39e84463d0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9ebcc61cc8b81844afb1be47c3a7867, type: 3}
 --- !u!4 &4364112922790870457 stripped

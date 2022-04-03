@@ -7,29 +7,48 @@ using UnityEngine;
 /// </summary>
 public class Acorn : Carriable
 {
-    public Tree tree;
-    public float minTreeTime = 5f;
-    public float maxTreeTime = 10f;
-    private float treeTimeThreshold = 0;
-    float timer = 0f;
+    private const string noGrowthTag = "NoGrowthZone";
+
+    public GameObject sapling;
+
+    //Sprouting
+    public float minSproutingTime = 3f;
+    public float maxSproutingTime = 5f;
+    float sTimeThreshold = 0f;
+    float sproutingTimer = 0f;
+
+    //Dying
+    /// <summary>
+    /// Acorn will not sprout inside of a noGrowthZone
+    /// </summary>
+    int inNonGrowthZone = 0;
 
     protected override void Start() {
         base.Start();
-        treeTimeThreshold = Random.Range(minTreeTime, maxTreeTime);
+        //How long will it take to sprout
+        sTimeThreshold = Random.Range(minSproutingTime, maxSproutingTime);
+
     }
 
     void Update() {
-        timer += Time.deltaTime;
-        if (timer > treeTimeThreshold) {
-            //TurnInto(tree.gameObject);
+        if (inNonGrowthZone == 0 && !Carried) {
+            sproutingTimer += Time.deltaTime;
+            if (sproutingTimer > sTimeThreshold) {
+                SpawnInPosition(sapling);
+                Destroy(transform.parent.gameObject);
+            }
         }
     }
 
-    public override void Interact(Player p) {
-        p.CarryMe(this);
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == noGrowthTag) {
+            ++inNonGrowthZone;  //A seed could be in multiple overlapping Growth Zones at the same time
+        }
     }
 
-    public override void InteractWith(Interactable o) {
-        //Nothing
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.tag == noGrowthTag) {
+            --inNonGrowthZone;
+        }
     }
 }

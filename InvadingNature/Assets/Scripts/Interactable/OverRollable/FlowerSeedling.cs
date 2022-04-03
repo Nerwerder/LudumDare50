@@ -27,7 +27,7 @@ public class FlowerSeedling : OverRollable
     }
 
     public void NextPhase() {
-        GameObject np = SpawnInPosition(nextPhase, transform.parent.parent);
+        GameObject np = SpawnInPosition(nextPhase);
         FlowerSeedling seedling = np.GetComponentInChildren<FlowerSeedling>();
         if(seedling) {
             seedling.bloom = bloom;

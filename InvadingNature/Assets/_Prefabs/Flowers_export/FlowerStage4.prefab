@@ -133,9 +133,11 @@ MonoBehaviour:
   nextPhase: {fileID: 0}
   minPhaseTime: 0
   maxPhaseTime: 0
-  seed: {fileID: 1715621225531564420, guid: 7bf1554ac0cc0e243a325dbb8c726c2f, type: 3}
+  seed: {fileID: 9164951500560297610, guid: 7bf1554ac0cc0e243a325dbb8c726c2f, type: 3}
   minSeedSpawnTime: 3
   maxSeedSpawnTime: 7
-  seedSpawnRange: 2
+  minSpawnedSeedOnDeath: 4
+  maxSpawnedSeedOnDeath: 7
+  seedSpawnRange: 1.5
   minDeathTime: 4
   maxDeathTime: 8

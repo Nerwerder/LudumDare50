@@ -15,7 +15,7 @@ public class PlantController : MonoBehaviour
 
     //TREES
     public bool enableTrees = true;
-    public Acorn acorn;
+    public GameObject acorn;
     private float acornTimer = 0f;
     private float aTimerThreshold = 0f;
     public float acornMinTime = 3f;
@@ -49,7 +49,7 @@ public class PlantController : MonoBehaviour
         if(enableTrees) {
             acornTimer += Time.deltaTime;
             if (acornTimer > aTimerThreshold) {
-                Spawn(acorn.gameObject);
+                Spawn(acorn);
                 ResetAcornTimer();
             }
         }
