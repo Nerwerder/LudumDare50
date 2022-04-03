@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     public void Move(float vertical) {
         if(vertical != 0f) {
             moveSpeed = vertical * speed * Time.deltaTime;
-            if(highSpeed && generator.On) {
+            if(highSpeed) { //TODO: && generator.On
                 moveSpeed *= highSpeedFactor;
             }
             transform.Translate(transform.worldToLocalMatrix.MultiplyVector(transform.forward) * moveSpeed);

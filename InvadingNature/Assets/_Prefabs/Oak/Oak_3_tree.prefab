@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2347706559284873088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3180118545863845945}
+  - component: {fileID: 7537942746994345961}
+  m_Layer: 0
+  m_Name: Spacer_Trees
+  m_TagString: NoTreeZone
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3180118545863845945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2347706559284873088}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6704991201609622910}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &7537942746994345961
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2347706559284873088}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.4
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3654295039501453608
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,8 +56,8 @@ GameObject:
   - component: {fileID: 3654295039501453609}
   - component: {fileID: 3654295039501453610}
   m_Layer: 0
-  m_Name: Spacer
-  m_TagString: Untagged
+  m_Name: Spacer_AllPlants
+  m_TagString: NoGrowthZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +88,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6217000850808635332
 GameObject:
@@ -79,6 +124,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3654295039501453609}
+  - {fileID: 3180118545863845945}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -184,9 +230,11 @@ MonoBehaviour:
   minSpawnedAcornOnDeath: 3
   maxSpawnedAcornOnDeath: 7
   acornSpawnRange: 2
+  acornSpawnSlowdown: 1.2
   hitsToCutDown: 2
   wood: {fileID: 8842495763847110766, guid: 389517944217a324cbdaed48f494d952, type: 3}
   spawnedWoodOnDeath: 2
   spawnedAcornsOnDeath: 2
   woodSpawnRange: 1
   buildingDamagePerSecond: 1
+  maxDamageDistance: 15

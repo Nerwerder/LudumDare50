@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b949eb78dd81a114eb0760ab31c16f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 5
   interactionDistance: 5
   throwPower: 50
   throwUpFactor: 0.45

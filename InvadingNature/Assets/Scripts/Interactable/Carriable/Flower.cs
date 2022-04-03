@@ -19,6 +19,7 @@ public class Flower : Carriable
     public int minSpawnedSeedOnDeath = 3;
     public int maxSpawnedSeedOnDeath = 7;
     public float seedSpawnRange = 2f;
+    public float seedSpawnSlowdown = 1.2f;
 
     //On the Ground
     public float minDeathTime = 4f;
@@ -33,11 +34,11 @@ public class Flower : Carriable
     //Bloom
     [HideInInspector] public PlantInfo plantInfo = null;
 
-
     //Building Damage
     private BuildingController buildingcontroller = null;
     public float buildingDamagePerSecond = 1f;
     private float accumulatedDamage = 0f;
+    public float maxDamageDistance = 12f;
 
     private void ResetTimer() {
         growthTimer = 0;
@@ -45,6 +46,8 @@ public class Flower : Carriable
             tThreshold = Random.Range(minPhaseTime, maxPhaseTime);
         } else if (seed) {
             tThreshold = Random.Range(minSeedSpawnTime, maxSeedSpawnTime);
+            minSeedSpawnTime *= seedSpawnSlowdown;
+            maxSeedSpawnTime *= seedSpawnSlowdown;
         } else {
             Debug.Assert(false, "Unknown Timer state");
         }
@@ -69,7 +72,7 @@ public class Flower : Carriable
             //Damage the nearest Building
             accumulatedDamage += buildingDamagePerSecond * Time.deltaTime;
             if(accumulatedDamage > 1f) {
-                buildingcontroller.DamageNearestBuilding(this, accumulatedDamage);
+                buildingcontroller.DamageNearestBuilding(this, accumulatedDamage, maxDamageDistance);
                 accumulatedDamage = 0f;
             }
             //Check for the next Phase and for reproduction

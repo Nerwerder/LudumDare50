@@ -14,10 +14,10 @@ public class BuildingController : MonoBehaviour
         buildings.Remove(b);
     }
 
-    public void DamageNearestBuilding(Interactable attacker, float damage) {
+    public void DamageNearestBuilding(Interactable attacker, float damage, float maxDistance) {
         //TODO: optimize this (safe the building per attacker in a map ...)
         var b = GetNearestBuilding(attacker.transform.position);
-        if(b) {
+        if((Vector3.Distance(attacker.transform.position, b.transform.position) < maxDistance) && b) {
             b.Damage(damage);
         }
     }

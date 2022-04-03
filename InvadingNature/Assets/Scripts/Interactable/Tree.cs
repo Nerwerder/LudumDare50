@@ -13,9 +13,9 @@ public class Tree : Interactable
     public GameObject acorn = null;
     public float minAcornSpawnTime = 2f;
     public float maxAcornSpawnTime = 4f;
-    public int minSpawnedAcornOnDeath = 3;
-    public int maxSpawnedAcornOnDeath = 7;
-    public float acornSpawnRange = 2f;
+    public float minAcornSpawnRange = 1.2f;
+    public float maxAcornSpawnRange = 2.5f;
+    public float acornSpawnSlowdown = 1.2f;
 
     //Cut the Tree
     public int hitsToCutDown = 2;
@@ -34,6 +34,7 @@ public class Tree : Interactable
     private BuildingController buildingcontroller = null;
     public float buildingDamagePerSecond = 1f;
     private float accumulatedDamage = 0f;
+    public float maxDamageDistance = 15f;
 
     //Timer
     float timerThreshold = 0f;
@@ -46,6 +47,8 @@ public class Tree : Interactable
             timerThreshold = Random.Range(minPhaseTime, maxPhaseTime);
         } else if (acorn) {
             timerThreshold = Random.Range(minAcornSpawnTime, maxAcornSpawnTime);
+            minAcornSpawnTime *= acornSpawnSlowdown;
+            maxAcornSpawnTime *= acornSpawnSlowdown;
         } else {
             Debug.Assert(false, "Tree without nextPhase or ability to spawn Acorns was not expected");
         }
@@ -66,7 +69,7 @@ public class Tree : Interactable
         //Damage the nearest Building
         accumulatedDamage += buildingDamagePerSecond * Time.deltaTime;
         if (accumulatedDamage > 1f) {
-            buildingcontroller.DamageNearestBuilding(this, accumulatedDamage);
+            buildingcontroller.DamageNearestBuilding(this, accumulatedDamage, maxDamageDistance);
             accumulatedDamage = 0f;
         }
         //Grow into the next Phase or create Acorns
@@ -87,13 +90,18 @@ public class Tree : Interactable
         }
     }
 
-    private GameObject SpawnInRange(GameObject g, float range, float height) {
-        Vector3 aSpawnPos = new Vector3(transform.position.x + Random.Range(-range,range), height, transform.position.z + Random.Range(-range,range));
+    private float GetPoint(float minRange, float maxRange) {
+        float distance = Random.Range(minRange, maxRange);
+        return (Random.Range(0, 2) == 0) ? (distance) : (-distance);
+    }
+
+    private GameObject SpawnInRange(GameObject g, float minRange, float maxRange, float height) {
+        Vector3 aSpawnPos = new Vector3(transform.position.x + GetPoint(minRange, maxRange), height, transform.position.z + GetPoint(minRange, maxRange));
         return Instantiate(g, aSpawnPos, Quaternion.identity, transform.parent);
     }
 
     private void SpanAcorn(float height) {
-        var go = SpawnInRange(acorn, acornSpawnRange, height);
+        var go = SpawnInRange(acorn, minAcornSpawnRange, maxAcornSpawnRange, height);
         go.GetComponent<Acorn>().plantInfo = new PlantInfo(plantInfo);
     }
 
@@ -106,7 +114,7 @@ public class Tree : Interactable
     private void CutDown() {
         //Spawn Wood
         for(int k = 0; k < spawnedWoodOnDeath; ++k) {
-            SpawnInRange(wood, woodSpawnRange, 1f);
+            SpawnInRange(wood, 0f, woodSpawnRange, 1f);
         }
         //Spawn Acorns
         for(int k = 0; k < spawnedAcornsOnDeath; ++k) {

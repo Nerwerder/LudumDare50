@@ -62,5 +62,5 @@ MonoBehaviour:
   - {r: 0.37603372, g: 0.5849056, b: 0.16278034, a: 0}
   acornMinTime: 6
   acornMaxTime: 12
-  spawnRadius: 15
+  spawnRadius: 16
   growthFactor: 1
