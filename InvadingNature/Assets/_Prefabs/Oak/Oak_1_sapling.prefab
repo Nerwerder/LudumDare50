@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1718829605}
   - component: {fileID: 1718829609}
   m_Layer: 0
-  m_Name: OakStage1
+  m_Name: Oak_1_sapling
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -65,7 +65,7 @@ public class Tree : Interactable
     }
 
     private void SpawnInRange(GameObject g, float range, float height) {
-        Vector3 aSpawnPos = new Vector3(transform.position.x + Random.Range(-range,range), height, transform.position.z * Random.Range(-range,range));
+        Vector3 aSpawnPos = new Vector3(transform.position.x + Random.Range(-range,range), height, transform.position.z + Random.Range(-range,range));
         Instantiate(g, aSpawnPos, Quaternion.identity, transform.parent);
     }
 

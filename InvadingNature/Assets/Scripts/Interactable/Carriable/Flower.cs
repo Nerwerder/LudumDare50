@@ -33,6 +33,11 @@ public class Flower : Carriable
     //Blom
     [HideInInspector] public BloomInfo bloom = null;
 
+    //Building Damage
+    private BuildingController buildingcontroller = null;
+    public float buildingDamagePerSecond = 1f;
+    private float accumulatedDamage = 0f;
+
     private void ResetTimer() {
         timer = 0;
         if(nextPhase) {
@@ -47,14 +52,26 @@ public class Flower : Carriable
     protected override void Start() {
         base.Start();
         ResetTimer();
+        //Death Timer
         dTimerThreshhold = Random.Range(minPhaseTime, maxDeathTime);
+        //Change the color of the Flower
         Debug.Assert(bloom != null, "Bloom has to be set");
         gameObject.GetComponent<Renderer>().materials[2].color = bloom.BloomColor;
+        //Get the nearest Building
+        buildingcontroller = FindObjectOfType<BuildingController>();
+        Debug.Assert(buildingcontroller, "Flower was not able to find the BuildingController");
     }
 
     void Update() {
         //Plant is in the Ground and alive
         if(!Carried && !Uprooted) {
+            //Damage the nearest Building
+            accumulatedDamage += buildingDamagePerSecond * Time.deltaTime;
+            if(accumulatedDamage > 1f) {
+                buildingcontroller.DamageNearestBuilding(this, accumulatedDamage);
+                accumulatedDamage = 0f;
+            }
+            //Check for the next Phase and for reproduction
             timer += Time.deltaTime;
             if (timer >= tThreshold) {
                 if (nextPhase) {
@@ -68,7 +85,6 @@ public class Flower : Carriable
                 }
             }
         }
-
         //Plant is on the Ground and dead
         if(!Carried && Uprooted) {
             deathTimer += Time.deltaTime;
