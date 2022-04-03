@@ -30,12 +30,18 @@ public class Tree : Interactable
     public int spawnedAcornsOnDeath = 2;
     public float woodSpawnRange = 1f;
 
+    //Building Damage
+    private BuildingController buildingcontroller = null;
+    public float buildingDamagePerSecond = 1f;
+    private float accumulatedDamage = 0f;
+
     //Timer
     float timerThreshold = 0f;
-    float timer = 0f;
+    float growthTimer = 0f;
 
+    [HideInInspector] public PlantInfo plantInfo = null;
     private void ResetTimer() {
-        timer = 0f;
+        growthTimer = 0f;
         if(nextPhase) {
             timerThreshold = Random.Range(minPhaseTime, maxPhaseTime);
         } else if (acorn) {
@@ -47,16 +53,33 @@ public class Tree : Interactable
 
     private void Start() {
         ResetTimer();
+        //Change the color of the Leaves
+        gameObject.GetComponent<Renderer>().materials[1].color = plantInfo.BloomColor;
+        //Take the Damage fomr earlier stages
+        hits = plantInfo.Damage;
+        //Get the nearest Building
+        buildingcontroller = FindObjectOfType<BuildingController>();
+        Debug.Assert(buildingcontroller, "Flower was not able to find the BuildingController");
     }
 
     private void Update() {
-        timer += Time.deltaTime;
-        if(timer >= timerThreshold) {
+        //Damage the nearest Building
+        accumulatedDamage += buildingDamagePerSecond * Time.deltaTime;
+        if (accumulatedDamage > 1f) {
+            buildingcontroller.DamageNearestBuilding(this, accumulatedDamage);
+            accumulatedDamage = 0f;
+        }
+        //Grow into the next Phase or create Acorns
+        growthTimer += (Time.deltaTime * plantInfo.GrowthFactor);
+        if(growthTimer >= timerThreshold) {
             if(nextPhase) {
-                SpawnInPosition(nextPhase);
+                var go = SpawnInPosition(nextPhase);
+                //Transfer the taken damage to the next phase
+                plantInfo.Damage = hits;
+                go.GetComponent<Tree>().plantInfo = plantInfo;
                 Destroy(gameObject);
             } else if (acorn) {
-                SpawnInRange(acorn, acornSpawnRange, 3f);
+                SpanAcorn(3f);
                 ResetTimer();
             } else {
                 Debug.Assert(false, "Tree without nextPhase or ability to spawn Acorns was not expected");
@@ -64,9 +87,14 @@ public class Tree : Interactable
         }
     }
 
-    private void SpawnInRange(GameObject g, float range, float height) {
+    private GameObject SpawnInRange(GameObject g, float range, float height) {
         Vector3 aSpawnPos = new Vector3(transform.position.x + Random.Range(-range,range), height, transform.position.z + Random.Range(-range,range));
-        Instantiate(g, aSpawnPos, Quaternion.identity, transform.parent);
+        return Instantiate(g, aSpawnPos, Quaternion.identity, transform.parent);
+    }
+
+    private void SpanAcorn(float height) {
+        var go = SpawnInRange(acorn, acornSpawnRange, height);
+        go.GetComponent<Acorn>().plantInfo = new PlantInfo(plantInfo);
     }
 
     public override void InteractWithPlayer(Player p) {
@@ -82,7 +110,7 @@ public class Tree : Interactable
         }
         //Spawn Acorns
         for(int k = 0; k < spawnedAcornsOnDeath; ++k) {
-            SpawnInRange(acorn, acornSpawnRange, 1f);
+            SpanAcorn(1f);
         }
         Destroy(gameObject);
     }

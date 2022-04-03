@@ -9,13 +9,15 @@ public class OakSapling : Carriable
     public float minTreeTime = 5f;
     public float maxTreeTime = 10f;
     private float treeTimeThreshold = 0;
-    float timer = 0f;
+    float growthTimer = 0f;
 
     //Uprooted
     public float minDeathTime = 4f;
     public float maxDeathTime = 8f;
     float dTimerThreshhold = 0f;
     float deathTimer = 0f;
+
+    [HideInInspector] public PlantInfo plantInfo = null;
 
     protected override void Start() {
         base.Start();
@@ -28,9 +30,12 @@ public class OakSapling : Carriable
     void Update() {
         if (!Carried) {
             if (!Uprooted) {
-                timer += Time.deltaTime;
-                if (timer >= treeTimeThreshold) {
-                    SpawnInPosition(tree);
+                growthTimer += (Time.deltaTime * plantInfo.GrowthFactor);
+                if (growthTimer >= treeTimeThreshold) {
+                    var go = SpawnInPosition(tree);
+                    var tr = go.GetComponent<Tree>();
+                    Debug.Assert(tr, "Found no Tree in Tree?");
+                    tr.plantInfo = plantInfo;
                     Destroy(gameObject);
                 }
             } else {
