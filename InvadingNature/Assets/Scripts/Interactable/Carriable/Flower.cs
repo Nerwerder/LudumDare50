@@ -31,7 +31,7 @@ public class Flower : Carriable
     float timer = 0f;
 
     //Blom
-    [HideInInspector] public BloomInfo bloom;
+    [HideInInspector] public BloomInfo bloom = null;
 
     private void ResetTimer() {
         timer = 0;
@@ -48,7 +48,7 @@ public class Flower : Carriable
         base.Start();
         ResetTimer();
         dTimerThreshhold = Random.Range(minPhaseTime, maxDeathTime);
-        //This is ... not nice
+        Debug.Assert(bloom != null, "Bloom has to be set");
         gameObject.GetComponent<Renderer>().materials[2].color = bloom.BloomColor;
     }
 
@@ -59,8 +59,9 @@ public class Flower : Carriable
             if (timer >= tThreshold) {
                 if (nextPhase) {
                     var go = SpawnInPosition(nextPhase);
+                    Debug.Assert(bloom != null, "Bloom has to be set");
                     go.GetComponentInChildren<Flower>().bloom = bloom;
-                    Destroy(transform.parent.gameObject);
+                    Destroy(gameObject);
                 } else if (seed) {
                     SpawnSeed();
                     ResetTimer();
@@ -76,7 +77,7 @@ public class Flower : Carriable
                 for(int k = 0; k < spawned; ++k) {
                     SpawnSeed();
                 }
-                Destroy(transform.parent.gameObject);
+                Destroy(gameObject);
             }
         }
 
@@ -87,8 +88,9 @@ public class Flower : Carriable
             float xOffset = Random.Range(-seedSpawnRange, seedSpawnRange);
             float zOffset = Random.Range(-seedSpawnRange, seedSpawnRange);
             Vector3 sSpawnPos = new Vector3(transform.position.x + xOffset, 0, transform.position.z + zOffset);
-            var go = Instantiate(seed, sSpawnPos, Quaternion.identity, transform.parent.parent);
+            var go = Instantiate(seed, sSpawnPos, Quaternion.identity, transform.parent);
             var fs = go.GetComponentInChildren<FlowerSeed>();
+            Debug.Assert(bloom != null, "Bloom has to be set");
             fs.SetBloomColor(bloom.BloomColor);
         }
     }

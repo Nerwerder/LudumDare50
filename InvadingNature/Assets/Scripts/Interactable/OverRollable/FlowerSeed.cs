@@ -51,20 +51,12 @@ public class FlowerSeed : OverRollable
         //Choose a random seedling
         GameObject s= possibleSeedlings[Random.Range(0, possibleSeedlings.Count)];
         //Spawn it
-        GameObject nS = SpawnInPosition(s, transform.parent.parent, s.transform);
+        GameObject nS = SpawnInPosition(s, s.transform);
         //Set some values
         FlowerSeedling fS = nS.GetComponentInChildren<FlowerSeedling>();
         fS.health = health;
         fS.bloom = bloom;
-        Destroy(transform.parent.gameObject);//Rather ugly
-    }
-
-    public override void Interact(Player p) {
-        //Nothing
-    }
-
-    public override void InteractWith(Interactable o) {
-        //Nothing
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other) {

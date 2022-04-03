@@ -27,7 +27,6 @@ public class Acorn : Carriable
         base.Start();
         //How long will it take to sprout
         sTimeThreshold = Random.Range(minSproutingTime, maxSproutingTime);
-
     }
 
     void Update() {
@@ -35,12 +34,13 @@ public class Acorn : Carriable
             sproutingTimer += Time.deltaTime;
             if (sproutingTimer > sTimeThreshold) {
                 SpawnInPosition(sapling);
-                Destroy(transform.parent.gameObject);
+                Destroy(gameObject);
             }
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
+    public override void OnTriggerEnter(Collider other) {
+        base.OnTriggerEnter(other);
         if (other.gameObject.tag == noGrowthTag) {
             ++inNonGrowthZone;  //A seed could be in multiple overlapping Growth Zones at the same time
         }

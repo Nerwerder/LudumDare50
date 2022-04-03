@@ -26,16 +26,18 @@ public class OakSapling : Carriable
     }
 
     void Update() {
-        if (!Carried && !Uprooted) {
-            timer += Time.deltaTime;
-            if (timer >= treeTimeThreshold) {
-                SpawnInPosition(tree);
-                Destroy(transform.parent.gameObject);
-            }
-        } else if (Uprooted) {
-            deathTimer += Time.deltaTime;
-            if (deathTimer >= dTimerThreshhold) {
-                Destroy(transform.parent.gameObject);
+        if (!Carried) {
+            if (!Uprooted) {
+                timer += Time.deltaTime;
+                if (timer >= treeTimeThreshold) {
+                    SpawnInPosition(tree);
+                    Destroy(gameObject);
+                }
+            } else {
+                deathTimer += Time.deltaTime;
+                if (deathTimer >= dTimerThreshhold) {
+                    Destroy(gameObject);
+                }
             }
         }
     }
