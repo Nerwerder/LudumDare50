@@ -137,3 +137,4 @@ MonoBehaviour:
   minSproutingTime: 3
   maxSproutingTime: 8
   wrongZoneDamage: 20
+  scaleOutPercentage: 0.1

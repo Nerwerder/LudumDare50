@@ -36,7 +36,7 @@ public abstract class OverRollable : Interactable
         //Nothing
     }
 
-    protected void TakeDamage(float damage) {
+    protected virtual void TakeDamage(float damage) {
         curHealth -= damage;
         if (curHealth <= 0f) {
             Destroy(gameObject);

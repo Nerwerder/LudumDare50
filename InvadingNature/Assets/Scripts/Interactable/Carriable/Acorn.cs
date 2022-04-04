@@ -15,6 +15,9 @@ public class Acorn : Carriable
     float sproutTimer = 0f;
 
     GrowthZoneChecker zoneChecker = new GrowthZoneChecker(true, true);
+    //Point of no Return (with the exception of a player picking the element up)
+    private bool scaleChanged = false;
+    public float scaleOutPercentage = 0.15f;
 
     protected override void Start() {
         base.Start();
@@ -25,7 +28,7 @@ public class Acorn : Carriable
 
     protected override void Update() {
         base.Update();
-        if((!Carried) && (zoneChecker.CanGrow())) {
+        if((!Carried) && (zoneChecker.CanGrow()) && (!scaleChanged)) {
             sproutTimer += (Time.deltaTime * plantInfo.GrowthFactor);
             if (sproutTimer > sTimeThreshold) {
                 var go = SpawnInPosition(sapling);
@@ -36,12 +39,32 @@ public class Acorn : Carriable
     }
 
     protected override void Deteriorate() {
-        if((!Carried) && (!zoneChecker.CanGrow())) {
+        //Scale changed is the point of no Return
+        if (((!Carried) && (!zoneChecker.CanGrow())) || (scaleChanged)) {
             DespawnTimerTick();
         }
     }
 
+    protected override void DespawnTimerTick() {
+        despawnTimer += Time.deltaTime;
+
+        //Time for Fade Out
+        if (despawnTimer > (despawnTime*(1f- scaleOutPercentage))) {
+            float factor = (despawnTime - despawnTimer) / (despawnTime* scaleOutPercentage);
+            transform.localScale = new Vector3(factor, factor, factor);
+            scaleChanged = true;
+        }
+
+        if (despawnTimer > despawnTime) {
+            Despawn();
+        }
+    }
+
     public override void InteractWithPlayer(Player p) {
+        if(scaleChanged) {
+            transform.localScale = Vector3.one;
+            scaleChanged = false;
+        }
         base.InteractWithPlayer(p);
         sproutTimer = 0f;
     }

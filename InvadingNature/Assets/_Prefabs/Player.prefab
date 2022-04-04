@@ -704,7 +704,7 @@ MonoBehaviour:
   buildingInteractionDistance: 7
   throwPower: 50
   throwUpFactor: 0.45
-  highSpeedFactor: 3
+  highSpeedFactor: 2
   moveSpeed: 0
   healPowerPerHit: 20
   carryPosition: {fileID: 1091332261}

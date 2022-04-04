@@ -42,7 +42,7 @@ public abstract class Carriable : Interactable
     //How long can the carryable survive On the Ground
     public float despawnTime = 10f;
     public bool onlyDeteriorateUprooted = false;
-    float despawnTimer = 0f;
+    protected float despawnTimer = 0f;
 
     //If the player carries something it should not collide with him (Flowers already don't collide with the player)
     public bool ignoreCollisionsWithPlayerIfCarried = true;

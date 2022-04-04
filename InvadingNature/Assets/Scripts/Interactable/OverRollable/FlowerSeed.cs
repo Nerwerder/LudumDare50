@@ -15,6 +15,12 @@ public class FlowerSeed : OverRollable
     GrowthZoneChecker zoneChecker = new GrowthZoneChecker(true, false);
     public float wrongZoneDamage = 20f;
 
+    //Scale out with Damage
+    public float scaleOutPercentage = 0.15f;
+    //Point of no Return
+    public bool scaleChanged = false;
+
+
     protected override void Start() {
         base.Start();
         //How long will it take to sprout
@@ -25,13 +31,28 @@ public class FlowerSeed : OverRollable
 
     protected override void Update() {
         base.Update();
-        if(zoneChecker.CanGrow()) {
+        if(zoneChecker.CanGrow() && (!scaleChanged)) {
             sproutTimer += (Time.deltaTime * plantInfo.GrowthFactor);
             if (sproutTimer > sTimeThreshold) {
                 Sprout();
             }
         } else {
             TakeDamage(wrongZoneDamage * Time.deltaTime);
+        }
+    }
+
+    protected override void TakeDamage(float damage) {
+        curHealth -= damage;
+
+        //Time for Fade Out
+        if(curHealth <= maxHealth*(1f- scaleOutPercentage)) {
+            float factor = (maxHealth * scaleOutPercentage) / (maxHealth - curHealth);
+            transform.localScale = new Vector3(factor, factor, factor);
+            scaleChanged = true;
+        }
+
+        if (curHealth <= 0f) {
+            Destroy(gameObject);
         }
     }
 

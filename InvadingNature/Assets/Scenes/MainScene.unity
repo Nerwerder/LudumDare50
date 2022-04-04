@@ -2291,6 +2291,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2133502015498520057, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
+      propertyPath: spawnFactor
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133502015498520057, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
+      propertyPath: growthFactor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133502015498520057, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
+      propertyPath: enableFlowers
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2133502015498520059, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
       propertyPath: m_Name
       value: PlantController
@@ -2552,10 +2564,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1594215807, guid: 8bb9e613bc8c51343b81cb4a290acdfe, type: 3}
-      propertyPath: highSpeedFactor
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8627370457291487608, guid: 8bb9e613bc8c51343b81cb4a290acdfe, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2724,12 +2732,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4281598673365180621, guid: 31a2d6b5386250b4b9e8b6854785a42b, type: 3}
-      propertyPath: m_Size.y
-      value: 0.23643267
-      objectReference: {fileID: 0}
-    - target: {fileID: 4281598673365180621, guid: 31a2d6b5386250b4b9e8b6854785a42b, type: 3}
       propertyPath: m_Center.y
-      value: -0.7691658
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31a2d6b5386250b4b9e8b6854785a42b, type: 3}
