@@ -113,10 +113,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.12834021
-  m_Height: 0.4084119
+  m_Radius: 0.14612398
+  m_Height: 0.4780603
   m_Direction: 1
-  m_Center: {x: 0, y: 0.013287798, z: 0}
+  m_Center: {x: 0.0014818609, y: 0.012546867, z: 0}
 --- !u!114 &1316310548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,3 +139,4 @@ MonoBehaviour:
   sapling: {fileID: 2619268679092289967, guid: e27488888d4404f4ba0e75b84c81fd2d, type: 3}
   minSproutingTime: 6
   maxSproutingTime: 12
+  scaleOutPercentage: 0.15

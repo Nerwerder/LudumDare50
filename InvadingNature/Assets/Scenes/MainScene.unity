@@ -2450,8 +2450,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2133502015498520057, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
+      propertyPath: acornMaxTime
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133502015498520057, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
+      propertyPath: acornMinTime
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133502015498520057, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
       propertyPath: enableFlowers
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133502015498520057, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
+      propertyPath: flowerMaxTime
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133502015498520057, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
+      propertyPath: flowerMinTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133502015498520057, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
+      propertyPath: increaseInterval
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2133502015498520059, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
       propertyPath: m_Name

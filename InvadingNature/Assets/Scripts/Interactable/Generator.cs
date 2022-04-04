@@ -60,16 +60,6 @@ public class Generator : Interactable
         } else {
             on = false;
         }
-
-        if(on != oldOn) {
-            oldOn = on;
-            CallAllPowerChangeCallbacks(on);
-            if(on) {
-                GetComponent<AudioSource>().Play();
-            } else {
-                GetComponent<AudioSource>().Pause();
-            }
-        }
     }
 
     public override void InteractWithItem(Carriable c) {
