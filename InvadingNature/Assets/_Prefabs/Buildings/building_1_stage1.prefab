@@ -166,3 +166,7 @@ MonoBehaviour:
   illerBuilding: {fileID: 1218382774, guid: 3ccea9c381d524142bb8e7800cbfcc9e, type: 3}
   healthUpperThreshold: 0
   healthLowerThreshold: 200
+  powerDamageReduction: 2
+  windowMaterialIndex: 2
+  window_off: {fileID: 2100000, guid: ddb5b337f1c05784f8fcd835d5e7d93e, type: 2}
+  window_on: {fileID: 2100000, guid: 69763f4a472111b4489d4c6799f695b2, type: 2}

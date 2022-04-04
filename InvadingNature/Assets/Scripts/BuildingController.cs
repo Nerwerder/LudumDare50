@@ -15,20 +15,21 @@ public class BuildingController : MonoBehaviour
     }
 
     public void DamageNearestBuilding(Interactable attacker, float damage, float maxDistance) {
-        //TODO: optimize this (safe the building per attacker in a map ...)
         var b = GetNearestBuilding(attacker.transform.position);
         if((Vector3.Distance(attacker.transform.position, b.transform.position) < maxDistance) && b) {
-            b.Damage(damage);
+            b.DamageBuilding(damage);
         }
     }
 
     private Building GetNearestBuilding(Vector3 p) {
-        float nearestDistance = 10000;
+        float nearestDistance = Mathf.Infinity;
         Building nearestBuilding = null;
         foreach(var b in buildings) {
-            float distance = Vector3.Distance(b.transform.position, p);
-            if(distance  < nearestDistance) {
-                nearestDistance = distance;
+            //Cheaper than Vector3.Distance
+            Vector3 direction = p - b.transform.position;
+            float dSqrt = direction.sqrMagnitude;
+            if(dSqrt < nearestDistance) {
+                nearestDistance = dSqrt;
                 nearestBuilding = b;
             }
         }
