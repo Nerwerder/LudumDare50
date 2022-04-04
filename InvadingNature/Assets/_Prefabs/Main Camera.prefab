@@ -98,6 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothSpeed: 2.5
-  offset: {x: 5, y: 10, z: 0}
-  minDistance: 8
-  maxDistance: 30
+  minDistance: 6
+  maxDistance: 20

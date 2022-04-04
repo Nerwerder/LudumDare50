@@ -131,8 +131,7 @@ MonoBehaviour:
   interactableType: 0
   oldParent: {fileID: 0}
   burnable: 1
-  burnValue: 7
+  burnValue: 4
   despawnTime: 20
   onlyDeteriorateUprooted: 0
   ignoreCollisionsWithPlayerIfCarried: 1
-  carryCollider: {fileID: 8842495763847110763}

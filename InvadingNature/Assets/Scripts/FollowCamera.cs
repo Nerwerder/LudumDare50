@@ -9,7 +9,7 @@ public class FollowCamera : MonoBehaviour
 {
     Transform player;
     public float smoothSpeed = 1f;
-    public Vector3 offset;
+    Vector3 offset;
 
     //ZOOM
     public float minDistance = 25;
@@ -18,6 +18,7 @@ public class FollowCamera : MonoBehaviour
 
     void Start()
     {
+        offset = transform.position;
         player = FindObjectOfType<Player>().transform;
         transform.position = player.position + offset;
         transform.LookAt(player);
