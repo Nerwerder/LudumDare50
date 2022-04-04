@@ -380,6 +380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6666970885634662227}
+  - component: {fileID: 1361750272}
   m_Layer: 0
   m_Name: robot
   m_TagString: Untagged
@@ -407,6 +408,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1361750272
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6327001252900128233}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 15b3dbad614d4fe4d98500036e0616b0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8518962120428036450
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,7 +453,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8518962120428036450}
-  m_LocalRotation: {x: -0.50304496, y: -0.49693644, z: 0.50304496, w: 0.49693644}
+  m_LocalRotation: {x: 0.48986435, y: 0.50993425, z: -0.48986435, w: -0.50993425}
   m_LocalPosition: {x: -0, y: -0.002702738, z: 0.40000522}
   m_LocalScale: {x: 16.050228, y: 16.050228, z: 16.050228}
   m_ConstrainProportionsScale: 0
@@ -440,7 +461,7 @@ Transform:
   - {fileID: 1161040922780192243}
   m_Father: {fileID: 6666970885634662227}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90.7}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: -272.3}
 --- !u!33 &608624628244347454
 MeshFilter:
   m_ObjectHideFlags: 0
