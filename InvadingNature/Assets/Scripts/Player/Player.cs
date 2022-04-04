@@ -49,6 +49,10 @@ public class Player : MonoBehaviour
 
     //TEST
     bool longTimeInteraction = false;
+    Tree ltITree = null;
+    float ltITimer = 0f;
+    public float lumberjackHitsPerSecond = 0.5f;
+
 
     private void Start() {
         generator = FindObjectOfType<Generator>();
@@ -58,6 +62,20 @@ public class Player : MonoBehaviour
 
     private void Update() {
         //Do Something
+        if(longTimeInteraction) {
+            if(moveSpeed > 0) {
+                StopInteracting();
+            } else {
+                ltITimer += Time.deltaTime;
+                if (ltITimer >= lumberjackHitsPerSecond) {
+                    ltITimer = 0f;
+                    var ret = ltITree.HitTree();
+                    if (ret) {
+                        StopInteracting();
+                    }
+                }
+            }
+        }
     }
 
     public void Move(float vertical) {
@@ -123,13 +141,28 @@ public class Player : MonoBehaviour
         if(longTimeInteraction) {
             longTimeInteraction = false;
             playerAnimation.Drop();
+            if(ltITree != null) {
+                ltITree.DeregisterTreeReplacementCallback();
+            }
+            ltITree = null;
         }
+    }
+
+    public void TreeReplacementCallback(Tree nt) {
+        ltITree.DeregisterTreeReplacementCallback();
+        ltITree = nt;
+        ltITree.RegisterTreeReplacementCallback(TreeReplacementCallback);
     }
 
     public void CutTreeDown(Tree t) {
         playerAnimation.CutTree();
-        t.HitTree();
+        t.RegisterTreeReplacementCallback(TreeReplacementCallback);
+        if (t) {
+            t.HitTree();
+        }
         longTimeInteraction = true;
+        ltITimer = 0f;
+        ltITree = t;
     }
 
     public void RepairBuilding(Building b) {
