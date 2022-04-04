@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f316e78fe14165948a5f4cc7ced98817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableFlowers: 1
+  enableFlowers: 0
   seedling: {fileID: 1808800489923736387, guid: 7a2d31d33253e0343bd7df3686c0965c, type: 3}
   bloomColors:
   - {r: 0.764151, g: 0.19824673, b: 0.19824673, a: 0}
@@ -54,7 +54,7 @@ MonoBehaviour:
   - {r: 0.5404343, g: 0.40445888, b: 0.5754717, a: 0}
   flowerMinTime: 6
   flowerMaxTime: 10
-  enableTrees: 1
+  enableTrees: 0
   acorn: {fileID: 4675819142119365460, guid: c63ffca96c671714a9a291b4d70b7243, type: 3}
   leafColors:
   - {r: 0.02024743, g: 0.3301887, b: 0.047259875, a: 0}
