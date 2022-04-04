@@ -6,6 +6,8 @@ public class Building : Interactable
 {
     BuildingController controller = null;
 
+    public int stage = 0;
+    public int ID = 0;
     public float currentHealth = 300f;
     public float maxHealth = 300f;
     public Building healthierBuiling = null;
@@ -39,7 +41,7 @@ public class Building : Interactable
         //controller (required so plants can damage this building)
         controller = FindObjectOfType<BuildingController>();
         Debug.Assert(controller, "Building was not able to find the BuildingController");
-        controller.RegisterBuilding(this);
+        controller.RegisterBuilding(this, ID, stage);
         //generator (required so the building can react to running generator)
         generator = FindObjectOfType<Generator>();
         Debug.Assert(generator, "Building was not able to find the Generator");
@@ -67,6 +69,7 @@ public class Building : Interactable
         var nGo = SpawnInPosition(nb);
         var nBd = nGo.GetComponent<Building>();
         nBd.currentHealth = currentHealth;
+        nBd.ID = ID;
         controller.RemoveBuilding(this);
         //Inform whoever wants to be informed about the replacement about the replacement
         if(buildingReplacementCallback != null) {

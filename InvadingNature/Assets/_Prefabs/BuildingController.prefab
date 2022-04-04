@@ -44,3 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a60f992489d45e48a9e74d7eae84944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingRepresentative:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  buldingStateSprites:
+  - {fileID: 21300000, guid: 8aa6dbb57995dd74db853a7dab583b89, type: 3}
+  - {fileID: 21300000, guid: b600ff65bd94b3b43b80744af5ba8b25, type: 3}
+  - {fileID: 21300000, guid: 8399be90b9e5e9448ba95c800e362892, type: 3}
