@@ -11,8 +11,6 @@ public class FlowerSeedling : OverRollable
     float pTimerThreshold = 0f;
     float phaseTimer = 0f;
 
-    [HideInInspector] public PlantInfo plantInfo = null;
-
     protected override void Start() {
         base.Start();
         pTimerThreshold = Random.Range(minPhaseTime, maxPhaseTime);

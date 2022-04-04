@@ -4,23 +4,16 @@ using UnityEngine;
 
 public class FlowerSeed : OverRollable
 {
-    private const string noGrowthTag = "NoGrowthZone";
-
     public List<GameObject> possibleSeedlings;
-    [HideInInspector] public PlantInfo plantInfo = null;
 
     //Sprouting
     public float minSproutingTime = 3f;
     public float maxSproutingTime = 5f;
     float sTimeThreshold = 0f;
-    float sproutingTimer = 0f;
+    float sproutTimer = 0f;
 
-    //Dying
-    /// <summary>
-    /// How much Damage does a Seed take in a nonGrotshZone per Second
-    /// </summary>
-    public float noGrowthZoneDamage = 10f;
-    int inNonGrowthZone = 0;
+    GrowthZoneChecker zoneChecker = new GrowthZoneChecker(true, false);
+    public float wrongZoneDamage = 20f;
 
     protected override void Start() {
         base.Start();
@@ -32,14 +25,13 @@ public class FlowerSeed : OverRollable
 
     protected override void Update() {
         base.Update();
-        if(inNonGrowthZone > 0) {
-            TakeDamage(Time.deltaTime * noGrowthZoneDamage);
-        } else {
-            Debug.Assert(plantInfo != null, "PlantInfo has to be set");
-            sproutingTimer += (Time.deltaTime * plantInfo.GrowthFactor);
-            if (sproutingTimer > sTimeThreshold) {
+        if(zoneChecker.CanGrow()) {
+            sproutTimer += (Time.deltaTime * plantInfo.GrowthFactor);
+            if (sproutTimer > sTimeThreshold) {
                 Sprout();
             }
+        } else {
+            TakeDamage(wrongZoneDamage * Time.deltaTime);
         }
     }
 
@@ -48,25 +40,19 @@ public class FlowerSeed : OverRollable
         GameObject s= possibleSeedlings[Random.Range(0, possibleSeedlings.Count)];
         //Spawn it
         GameObject nS = SpawnInPosition(s, s.transform);
-        //Set some values
-        FlowerSeedling fS = nS.GetComponentInChildren<FlowerSeedling>();
         //Transfer the Damage to the next Phase
         plantInfo.Damage = (int)(maxHealth - curHealth);
-        fS.plantInfo = plantInfo;
+        nS.GetComponentInChildren<FlowerSeedling>().plantInfo = plantInfo;
         Destroy(gameObject);
     }
 
     protected override void OnTriggerEnter(Collider other) {
         base.OnTriggerEnter(other);
-        if(other.gameObject.tag == noGrowthTag) {
-            ++inNonGrowthZone;  //A seed could be in multiple overlapping Growth Zones at the same time
-        }
+        zoneChecker.EnterCollider(other);
     }
 
     protected override void OnTriggerExit(Collider other) {
         base.OnTriggerExit(other);
-        if (other.gameObject.tag == noGrowthTag) {
-            --inNonGrowthZone;
-        }
+        zoneChecker.ExitCollider(other);
     }
 }

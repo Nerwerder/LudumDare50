@@ -131,6 +131,6 @@ MonoBehaviour:
   interactableType: 0
   oldParent: {fileID: 0}
   burnable: 1
-  burnValue: 5
-  minAliveTime: 12
-  maxAliveTime: 20
+  burnValue: 7
+  despawnTime: 20
+  onlyDeteriorateUprooted: 0

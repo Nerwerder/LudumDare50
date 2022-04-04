@@ -21,18 +21,9 @@ public class Flower : Carriable
     public float seedSpawnRange = 2f;
     public float seedSpawnSlowdown = 1.2f;
 
-    //On the Ground
-    public float minDeathTime = 4f;
-    public float maxDeathTime = 8f;
-    float dTimerThreshhold = 0f;
-    float deathTimer = 0f;
-
     //Common
     float tThreshold = 0f;
     float growthTimer = 0f;
-
-    //Bloom
-    [HideInInspector] public PlantInfo plantInfo = null;
 
     //Building Damage
     private BuildingController buildingcontroller = null;
@@ -56,8 +47,6 @@ public class Flower : Carriable
     protected override void Start() {
         base.Start();
         ResetTimer();
-        //Death Timer
-        dTimerThreshhold = Random.Range(minPhaseTime, maxDeathTime);
         //Change the color of the Flower
         Debug.Assert(plantInfo != null, "Bloom has to be set");
         gameObject.GetComponent<Renderer>().materials[2].color = plantInfo.BloomColor;
@@ -71,7 +60,8 @@ public class Flower : Carriable
         }
     }
 
-    void Update() {
+    protected override void Update() {
+        base.Update();
         //Plant is in the Ground and alive
         if(!Carried && !Uprooted) {
             //Damage the nearest Building
@@ -94,18 +84,14 @@ public class Flower : Carriable
                 }
             }
         }
-        //Plant is on the Ground and dead
-        if(!Carried && Uprooted) {
-            deathTimer += Time.deltaTime;
-            if(deathTimer > dTimerThreshhold) {
-                int spawned = Random.Range(minSpawnedSeedOnDeath, maxSpawnedSeedOnDeath);
-                for(int k = 0; k < spawned; ++k) {
-                    SpawnSeed();
-                }
-                Destroy(gameObject);
-            }
-        }
+    }
 
+    protected override void Despawn() {
+        base.Despawn();
+        int toSpawn = Random.Range(minSpawnedSeedOnDeath, maxSpawnedSeedOnDeath);
+        for (int k = 0; k < toSpawn; ++k) {
+            SpawnSeed();
+        }
     }
 
     private void SpawnSeed() {

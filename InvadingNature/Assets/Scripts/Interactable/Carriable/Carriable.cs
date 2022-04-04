@@ -22,6 +22,9 @@ public abstract class Carriable : Interactable
         get { return carried; }
     }
 
+    /// <summary>
+    /// Safe the Player that carries this Item
+    /// </summary>
     private Player carryingPlayer = null;
 
     bool uprooted = false;
@@ -36,6 +39,12 @@ public abstract class Carriable : Interactable
     public bool burnable = true;
     public float burnValue = 1f;
 
+    //How long can the carryable survive On the Ground
+    public float despawnTime = 10f;
+    public bool onlyDeteriorateUprooted = false;
+    float despawnTimer = 0f;
+
+
     public void Burn() {
         if(carried) {
             //Get back from the player
@@ -48,10 +57,33 @@ public abstract class Carriable : Interactable
         oldParent = transform.parent;
     }
 
+    protected virtual void Update() {
+        Deteriorate();
+    }
+
+    protected virtual void Deteriorate() {
+        if ((!Carried) && ((!onlyDeteriorateUprooted) || (onlyDeteriorateUprooted && uprooted))) {
+            DespawnTimerTick();
+        }
+    }
+
+    protected virtual void DespawnTimerTick() {
+        despawnTimer += Time.deltaTime;
+        if (despawnTimer > despawnTime) {
+            Despawn();
+        }
+    }
+
+    protected virtual void Despawn() {
+        Destroy(gameObject);
+    }
+
     public override void InteractWithPlayer(Player p) {
         GetComponent<Rigidbody>().isKinematic = true;
         Carried = true;
         carryingPlayer = p;
+        //Carrying something resets the despawnTimer
+        despawnTimer = 0f;
         p.CarryItem(this);
     }
 

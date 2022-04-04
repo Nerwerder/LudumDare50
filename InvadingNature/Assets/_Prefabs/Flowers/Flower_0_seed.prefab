@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdec8493ea7798542ae957360f3399e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 0
+  interactableType: 2
   maxHealth: 100
   curHealth: 100
   rollOverDamage: 70
@@ -135,5 +135,5 @@ MonoBehaviour:
   possibleSeedlings:
   - {fileID: 4210627542755690324, guid: b8bbe9d1442d41542bd9331fa3a1e38d, type: 3}
   minSproutingTime: 3
-  maxSproutingTime: 5
-  noGrowthZoneDamage: 45
+  maxSproutingTime: 7
+  wrongZoneDamage: 20

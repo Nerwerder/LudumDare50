@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d78c27e6260bb9419ce3689164d1f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 0
+  interactableType: 2
   nextPhase: {fileID: 0}
   minPhaseTime: 2
   maxPhaseTime: 4

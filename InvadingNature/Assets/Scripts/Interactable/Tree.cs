@@ -40,7 +40,6 @@ public class Tree : Interactable
     float timerThreshold = 0f;
     float growthTimer = 0f;
 
-    [HideInInspector] public PlantInfo plantInfo = null;
     private void ResetTimer() {
         growthTimer = 0f;
         if(nextPhase) {

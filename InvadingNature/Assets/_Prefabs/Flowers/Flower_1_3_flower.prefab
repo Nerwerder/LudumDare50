@@ -192,10 +192,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0b9e5c20c8ef34d9935b6f8b9826d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 0
+  interactableType: 2
   oldParent: {fileID: 0}
   burnable: 1
   burnValue: 1
+  despawnTime: 10
+  onlyDeteriorateUprooted: 1
   nextPhase: {fileID: 385535867333293869, guid: 84df8c3eaa4de9943b8ad286eb37716c, type: 3}
   minPhaseTime: 4
   maxPhaseTime: 9
@@ -206,7 +208,5 @@ MonoBehaviour:
   maxSpawnedSeedOnDeath: 5
   seedSpawnRange: 1.2
   seedSpawnSlowdown: 1.2
-  minDeathTime: 4
-  maxDeathTime: 8
   buildingDamagePerSecond: 1
   maxDamageDistance: 12

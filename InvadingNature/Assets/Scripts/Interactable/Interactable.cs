@@ -16,8 +16,13 @@ public abstract class Interactable : MonoBehaviour
     /// <summary>
     /// If a interactable has to interact witha nother interactable in a special way, add a type (basically a second Tag to  allow identification without casting)
     /// </summary>
-    public enum InteractableType { Default, Generator }
+    public enum InteractableType { Default, Generator, Plant }
     public InteractableType interactableType = InteractableType.Default;
+
+    /// <summary>
+    /// All Plants require a plantInfo
+    /// </summary>
+    [HideInInspector] public PlantInfo plantInfo = null;
 
     /// <summary>
     /// Interact with the Player

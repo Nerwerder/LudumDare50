@@ -174,11 +174,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0baab5bd2ca034e866325336d9d28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 0
+  interactableType: 2
   maxHealth: 100
   curHealth: 100
   rollOverDamage: 80
   movementSpeedFactor: 130
   nextPhase: {fileID: 8707905938664569051, guid: c2ee18b4da1296d4ca00c7b6b0f09721, type: 3}
-  minPhaseTime: 3
+  minPhaseTime: 4
   maxPhaseTime: 6

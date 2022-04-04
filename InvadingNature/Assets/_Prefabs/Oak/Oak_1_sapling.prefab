@@ -175,15 +175,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f4959849156e145a5cedb75221a332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 0
+  interactableType: 2
   oldParent: {fileID: 0}
   burnable: 1
   burnValue: 1
+  despawnTime: 6
+  onlyDeteriorateUprooted: 1
   tree: {fileID: 391703194713679624, guid: 9a7b3e86c852d474fb39266a4102d684, type: 3}
   minTreeTime: 6
   maxTreeTime: 12
-  minDeathTime: 4
-  maxDeathTime: 8
 --- !u!1 &3804281063697176920
 GameObject:
   m_ObjectHideFlags: 0

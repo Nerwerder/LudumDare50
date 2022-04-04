@@ -129,12 +129,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eb28de424311a499145eac488a6444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 0
+  interactableType: 2
   oldParent: {fileID: 0}
   burnable: 1
   burnValue: 1
+  despawnTime: 8
+  onlyDeteriorateUprooted: 0
   sapling: {fileID: 2619268679092289967, guid: e27488888d4404f4ba0e75b84c81fd2d, type: 3}
   minSproutingTime: 6
   maxSproutingTime: 12
-  minDyingTime: 8
-  maxDyingTime: 12
