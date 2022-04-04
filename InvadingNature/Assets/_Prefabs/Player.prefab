@@ -714,6 +714,12 @@ MonoBehaviour:
   runningGeneratorEnergyProduction: 1
   energyCostRunning: 0.4
   energyCostRepearing: 4
+  powerRepresentations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1594215806
 MonoBehaviour:
   m_ObjectHideFlags: 0

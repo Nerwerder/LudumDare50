@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableType: 3
+  stage: 2
   currentHealth: 300
   maxHealth: 300
   healthierBuiling: {fileID: 1218382774, guid: 3ccea9c381d524142bb8e7800cbfcc9e, type: 3}

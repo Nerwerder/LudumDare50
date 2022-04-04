@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingController : MonoBehaviour
 {
     private List<Building> buildings = new List<Building>();
 
-    public void RegisterBuilding(Building b) {
+    public List<Image> buildingRepresentative;
+    public List<Sprite> buldingStateSprites;
+
+    public void RegisterBuilding(Building b, int id, int stage) {
         buildings.Add(b);
+        //Change UI
+        buildingRepresentative[id].sprite = buldingStateSprites[stage];
     }
 
     public void RemoveBuilding(Building b) {

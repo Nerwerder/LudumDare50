@@ -41,4 +41,12 @@ public class GameController : MonoBehaviour
         //CAMERA
         playerCamera.Zoom(Input.GetAxis("Mouse ScrollWheel"));
     }
+
+    public void StartGame() {
+
+    }
+
+    public void GameOver() {
+
+    }
 }
