@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
 /// <summary>
 /// The GameController is the only class that is allowed to check for player inputs and will distribute those to the right Elements.
 /// </summary>
@@ -13,6 +14,8 @@ public class GameController : MonoBehaviour
 
     //
     public GameObject mainMenuRoot;
+    public GameObject gameOverMenu;
+
 
     void Start()
     {
@@ -58,6 +61,12 @@ public class GameController : MonoBehaviour
     }
 
     public void GameOver() {
+        gameOverMenu.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuidGame()
