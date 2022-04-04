@@ -706,7 +706,7 @@ MonoBehaviour:
   throwUpFactor: 0.45
   highSpeedFactor: 3
   moveSpeed: 0
-  healPowerPerHit: 10
+  healPowerPerHit: 20
   carryPosition: {fileID: 1091332261}
   lumberjackHitsPerSecond: 0.5
 --- !u!114 &1594215806

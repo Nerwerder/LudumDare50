@@ -2251,6 +2251,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2133502015498520057, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
+      propertyPath: spawnFactor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133502015498520057, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
+      propertyPath: growthFactor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2133502015498520059, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
       propertyPath: m_Name
       value: PlantController
@@ -2858,7 +2866,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 899807194157247526, guid: 16982a918be53444fb710961c7aefd51, type: 3}
       propertyPath: m_Name
-      value: building_2_stage1 (1)
+      value: building_2_stage1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16982a918be53444fb710961c7aefd51, type: 3}
@@ -3106,7 +3114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3014105561230099680, guid: 2110ee4921a23e54c910c5cc3d0666c1, type: 3}
       propertyPath: m_Name
-      value: building_1_stage1 (1)
+      value: building_1_stage1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2110ee4921a23e54c910c5cc3d0666c1, type: 3}

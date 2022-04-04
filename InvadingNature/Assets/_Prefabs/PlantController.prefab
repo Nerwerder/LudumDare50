@@ -64,3 +64,4 @@ MonoBehaviour:
   acornMaxTime: 12
   spawnRadius: 20
   growthFactor: 1
+  spawnFactor: 1

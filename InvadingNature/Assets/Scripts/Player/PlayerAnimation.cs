@@ -33,6 +33,8 @@ public class PlayerAnimation : MonoBehaviour
         animator.ResetTrigger(isThrowing);
         inactiveAxe.SetActive(true);
         activeAxe.SetActive(false);
+        inactiveHammer.SetActive(true);
+        activeHammer.SetActive(false);
     }
 
     public void Throw() {
@@ -47,5 +49,13 @@ public class PlayerAnimation : MonoBehaviour
         animator.ResetTrigger(isThrowing);
         inactiveAxe.SetActive(false);
         activeAxe.SetActive(true);
+    }
+
+    public void HitHouse() {
+        animator.ResetTrigger(isLifting);
+        animator.SetTrigger(isChopping);
+        animator.ResetTrigger(isThrowing);
+        inactiveHammer.SetActive(false);
+        activeHammer.SetActive(true);
     }
 }
