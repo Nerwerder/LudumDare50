@@ -10,6 +10,10 @@ public class GameController : MonoBehaviour
     Player player = null;
     FollowCamera playerCamera = null;
 
+
+    //
+    public GameObject mainMenuRoot;
+
     void Start()
     {
         player = FindObjectOfType<Player>();
@@ -38,15 +42,23 @@ public class GameController : MonoBehaviour
         if(Input.GetMouseButtonUp(0)) {
             player.StopInteracting();
         }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            mainMenuRoot.SetActive(!mainMenuRoot.activeSelf);
+        }
         //CAMERA
         playerCamera.Zoom(Input.GetAxis("Mouse ScrollWheel"));
     }
 
     public void StartGame() {
-
+        mainMenuRoot.SetActive(false);
     }
 
     public void GameOver() {
+    }
 
+    public void QuidGame()
+    {
+        Application.Quit();
     }
 }
