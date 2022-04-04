@@ -180,5 +180,5 @@ MonoBehaviour:
   rollOverDamage: 90
   movementSpeedFactor: 140
   nextPhase: {fileID: 6657902946689177378, guid: e9ebcc61cc8b81844afb1be47c3a7867, type: 3}
-  minPhaseTime: 4
+  minPhaseTime: 5
   maxPhaseTime: 8

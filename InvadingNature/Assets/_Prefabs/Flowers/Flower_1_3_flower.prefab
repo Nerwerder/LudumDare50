@@ -200,14 +200,14 @@ MonoBehaviour:
   onlyDeteriorateUprooted: 1
   ignoreCollisionsWithPlayerIfCarried: 0
   nextPhase: {fileID: 385535867333293869, guid: 84df8c3eaa4de9943b8ad286eb37716c, type: 3}
-  minPhaseTime: 4
-  maxPhaseTime: 9
+  minPhaseTime: 6
+  maxPhaseTime: 10
   seed: {fileID: 1808800489923736387, guid: 7a2d31d33253e0343bd7df3686c0965c, type: 3}
-  minSeedSpawnTime: 2
-  maxSeedSpawnTime: 4
-  minSpawnedSeedOnDeath: 2
-  maxSpawnedSeedOnDeath: 5
-  seedSpawnRange: 1.2
-  seedSpawnSlowdown: 1.2
-  buildingDamagePerSecond: 1
+  minSeedSpawnTime: 0
+  maxSeedSpawnTime: 0
+  minSpawnedSeedOnDeath: 1
+  maxSpawnedSeedOnDeath: 3
+  seedSpawnRange: 0
+  seedSpawnSlowdown: 0
+  buildingDamagePerSecond: 0.6
   maxDamageDistance: 12
