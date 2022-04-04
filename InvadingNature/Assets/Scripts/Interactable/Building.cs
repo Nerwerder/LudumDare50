@@ -22,6 +22,19 @@ public class Building : Interactable
     public Material window_off;
     public Material window_on;
 
+    //WORKAROUND
+    //If the player is in a longTimeInteraction with this Building, he has to be informed if the building Changes
+    public delegate void BuildingReplacementCallback(Building b);
+    private BuildingReplacementCallback buildingReplacementCallback = null;
+
+    public void RegisterBuildingReplacementCallback(BuildingReplacementCallback c) {
+        buildingReplacementCallback = c;
+    }
+
+    public void DeregisterBuildingReplacementCallback() {
+        buildingReplacementCallback = null;
+    }
+
     private void Start() {
         //controller (required so plants can damage this building)
         controller = FindObjectOfType<BuildingController>();
@@ -51,10 +64,14 @@ public class Building : Interactable
     }
 
     private void ReplaceBuilding(GameObject nb) {
-        var go = SpawnInPosition(nb);
-        var rb = go.GetComponent<Building>();
-        rb.currentHealth = currentHealth;
+        var nGo = SpawnInPosition(nb);
+        var nBd = nGo.GetComponent<Building>();
+        nBd.currentHealth = currentHealth;
         controller.RemoveBuilding(this);
+        //Inform whoever wants to be informed about the replacement about the replacement
+        if(buildingReplacementCallback != null) {
+            buildingReplacementCallback(nBd);
+        }
         generator.DeregisterPowerChangeCallback(PowerChangeCallback);
         Destroy(gameObject);
     }
@@ -69,13 +86,23 @@ public class Building : Interactable
         }
     }
 
-    public void HealBuilding(float d) {
+    /// <summary>
+    /// Heal the Building
+    /// </summary>
+    /// <param name="d"> How much will be healed</param>
+    /// <returns>True if fully healed</returns>
+    public bool HealBuilding(float d) {
         Debug.Assert(d >= 0, "HealBuilding can only be positive - please use HealBuilding for negative Healing");
         currentHealth += d;
-        if (currentHealth > maxHealth) { currentHealth = maxHealth; }
+        bool ret = false;
+        if (currentHealth >= maxHealth) {
+            currentHealth = maxHealth;
+            ret = true;
+        }
         if(healthierBuiling && currentHealth > healthUpperThreshold) {
             ReplaceBuilding(healthierBuiling.gameObject);
         }
+        return ret;
     }
 
     public override void InteractWithItem(Carriable c) {
@@ -83,6 +110,6 @@ public class Building : Interactable
     }
 
     public override void InteractWithPlayer(Player p) {
-        HealBuilding(p.healPower);
+        p.RepairBuilding(this);
     }
 }
