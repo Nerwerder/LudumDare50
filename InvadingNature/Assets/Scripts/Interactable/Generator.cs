@@ -8,6 +8,7 @@ public class Generator : Interactable
     public float fuelConsumptionPerSecond = 0.2f;
     private bool oldOn = false;
     private bool on = false;
+
     public bool On {
         get { return on; }
     }
@@ -63,6 +64,11 @@ public class Generator : Interactable
         if(on != oldOn) {
             oldOn = on;
             CallAllPowerChangeCallbacks(on);
+            if(on) {
+                GetComponent<AudioSource>().Play();
+            } else {
+                GetComponent<AudioSource>().Pause();
+            }
         }
     }
 
