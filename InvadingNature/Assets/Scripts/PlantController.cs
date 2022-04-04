@@ -25,6 +25,7 @@ public class PlantController : MonoBehaviour
     //All
     public float spawnRadius = 5f;
     public float growthFactor = 1f;
+    public float spawnFactor = 1f;
 
     void Start()
     {
@@ -36,7 +37,7 @@ public class PlantController : MonoBehaviour
     {
         //Flower
         if(enableFlowers) {
-            flowerTimer += Time.deltaTime;
+            flowerTimer += (Time.deltaTime * spawnFactor);
             if (flowerTimer > fTimerThreshold) {
                 var go = Spawn(seedling);
                 var col = bloomColors[Random.Range(0, bloomColors.Count)];
@@ -48,7 +49,7 @@ public class PlantController : MonoBehaviour
 
         //Acorn
         if(enableTrees) {
-            acornTimer += Time.deltaTime;
+            acornTimer += (Time.deltaTime * spawnFactor);
             if (acornTimer > aTimerThreshold) {
                 var go = Spawn(acorn);
                 var col = leafColors[Random.Range(0, leafColors.Count)];

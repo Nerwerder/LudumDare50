@@ -80,7 +80,9 @@ public class Building : Interactable
         Debug.Assert(d >= 0, "DamageBuilding can only be positive - please use Heal for negative Damage");
         float damage = hasPower ? d/powerDamageReduction : d;
         currentHealth -= damage;
-        if(currentHealth < 0) { currentHealth = 0; }
+        if(currentHealth < 0) {
+            currentHealth = 0; 
+        }
         if(illerBuilding && currentHealth < healthLowerThreshold) {
             ReplaceBuilding(illerBuilding.gameObject);
         }

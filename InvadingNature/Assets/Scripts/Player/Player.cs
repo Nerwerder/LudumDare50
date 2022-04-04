@@ -168,6 +168,7 @@ public class Player : MonoBehaviour
     }
 
     public void TreeReplacementCallback(Tree nt) {
+        Debug.Assert(nt, "TreeReplacementCallback was called without valid Tree");
         ltITree.DeregisterTreeReplacementCallback();
         ltITree = nt;
         ltITree.RegisterTreeReplacementCallback(TreeReplacementCallback);
@@ -175,27 +176,28 @@ public class Player : MonoBehaviour
 
     public void CutTreeDown(Tree t) {
         playerAnimation.CutTree();
-        t.RegisterTreeReplacementCallback(TreeReplacementCallback);
-        t.HitTree();
+        ltITree = t;
         longTimeInteraction = true;
         ltITimer = 0f;
-        ltITree = t;
+        ltITree.RegisterTreeReplacementCallback(TreeReplacementCallback);
+        ltITree.HitTree();
     }
 
-    public void BuildingReplacementCallback(Building b) {
-        Debug.Assert(b, "BuildingReplacementCallback was called without valid building");
+    public void BuildingReplacementCallback(Building nb) {
+        Debug.Assert(ltIBuilding, "BuildingReplacementCallback was called without valid OLD Building");
+        Debug.Assert(nb, "BuildingReplacementCallback was called without valid NEW Building");
         ltIBuilding.DeregisterBuildingReplacementCallback();
-        ltIBuilding = b;
+        ltIBuilding = nb;
         ltIBuilding.RegisterBuildingReplacementCallback(BuildingReplacementCallback);
     }
 
     public void RepairBuilding(Building b) {
-        playerAnimation.CutTree();
-        b.RegisterBuildingReplacementCallback(BuildingReplacementCallback);
-        b.HealBuilding(healPowerPerHit);
+        playerAnimation.HitHouse();
+        ltIBuilding = b;
         longTimeInteraction = true;
         ltITimer = 0f;
-        ltIBuilding = b;
+        ltIBuilding.RegisterBuildingReplacementCallback(BuildingReplacementCallback);
+        ltIBuilding.HealBuilding(healPowerPerHit);
     }
 
     public void CarryItem(Carriable c) {

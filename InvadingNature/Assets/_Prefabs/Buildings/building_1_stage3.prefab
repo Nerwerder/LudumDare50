@@ -161,13 +161,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a1d160836adee47b702c52b8b49dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 0
+  interactableType: 3
   currentHealth: 300
   maxHealth: 300
   healthierBuiling: {fileID: 1218382774, guid: 3ccea9c381d524142bb8e7800cbfcc9e, type: 3}
   illerBuilding: {fileID: 0}
   healthUpperThreshold: 101
   healthLowerThreshold: 0
+  powerDamageReduction: 2
   windowMaterialIndex: 2
   window_off: {fileID: 2100000, guid: c4ef4872970b0cd49bb38fe90a8dbf51, type: 2}
   window_on: {fileID: 2100000, guid: c4ef4872970b0cd49bb38fe90a8dbf51, type: 2}
