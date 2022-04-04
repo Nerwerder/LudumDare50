@@ -105,7 +105,11 @@ public class Tree : Interactable
     }
 
     public override void InteractWithPlayer(Player p) {
-        if(++hits >= hitsToCutDown) {
+        p.CutTreeDown(this);
+    }
+
+    public void HitTree() {
+        if (++hits >= hitsToCutDown) {
             CutDown();
         }
     }

@@ -47,10 +47,17 @@ public class Player : MonoBehaviour
     /// </summary>
     PlayerAnimation playerAnimation = null;
 
+    //TEST
+    bool longTimeInteraction = false;
+
     private void Start() {
         generator = FindObjectOfType<Generator>();
         Debug.Assert(generator, "Player was not able to find the Generator");
         playerAnimation = GetComponent<PlayerAnimation>();
+    }
+
+    private void Update() {
+        //Do Something
     }
 
     public void Move(float vertical) {
@@ -98,19 +105,35 @@ public class Player : MonoBehaviour
             }
         }
 
+        //Interact with the first interactable
         if (interactables.Count != 0) {
-            foreach(Interactable i in interactables) {
-                if(carry) {
-                    i.InteractWithItem(carry);
-                } else {
-                    i.InteractWithPlayer(this);
-                }
+            if(carry) {
+                interactables[0].InteractWithItem(carry);
+            } else {
+                interactables[0].InteractWithPlayer(this);
             }
         } else {
             if(carry) {
                 ThrowItem(hitPoint);
             }
         }
+    }
+
+    public void StopInteracting() {
+        if(longTimeInteraction) {
+            longTimeInteraction = false;
+            playerAnimation.Drop();
+        }
+    }
+
+    public void CutTreeDown(Tree t) {
+        playerAnimation.CutTree();
+        t.HitTree();
+        longTimeInteraction = true;
+    }
+
+    public void RepairBuilding(Building b) {
+
     }
 
     public void CarryItem(Carriable c) {

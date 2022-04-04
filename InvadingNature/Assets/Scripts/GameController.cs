@@ -35,7 +35,9 @@ public class GameController : MonoBehaviour
             hits = Physics.RaycastAll(ray, 100f);
             player.Interact(hits);
         }
-
+        if(Input.GetMouseButtonUp(0)) {
+            player.StopInteracting();
+        }
         //CAMERA
         playerCamera.Zoom(Input.GetAxis("Mouse ScrollWheel"));
     }
