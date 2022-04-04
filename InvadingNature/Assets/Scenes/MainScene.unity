@@ -2552,6 +2552,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1594215807, guid: 8bb9e613bc8c51343b81cb4a290acdfe, type: 3}
+      propertyPath: energyCostRunning
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1594215807, guid: 8bb9e613bc8c51343b81cb4a290acdfe, type: 3}
+      propertyPath: energyCostRepearing
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8627370457291487608, guid: 8bb9e613bc8c51343b81cb4a290acdfe, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2718,14 +2726,6 @@ PrefabInstance:
     - target: {fileID: 4281598673365180620, guid: 31a2d6b5386250b4b9e8b6854785a42b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4281598673365180621, guid: 31a2d6b5386250b4b9e8b6854785a42b, type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4281598673365180621, guid: 31a2d6b5386250b4b9e8b6854785a42b, type: 3}
-      propertyPath: m_Center.y
-      value: -7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31a2d6b5386250b4b9e8b6854785a42b, type: 3}

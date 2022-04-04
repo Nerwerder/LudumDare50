@@ -48,13 +48,26 @@ public class Player : MonoBehaviour
     /// </summary>
     PlayerAnimation playerAnimation = null;
 
-    //TEST
+    //LongTimeInteraction
+    //WORKAROUND: I did not plan for this...
     bool longTimeInteraction = false;
     Tree ltITree = null;
     Building ltIBuilding = null;
     float ltITimer = 0f;
     public float lumberjackHitsPerSecond = 0.5f;
 
+    //Energy
+    public float maxEnergy = 100f;
+    public float curEnergy = 50f;
+    public float runningGeneratorEnergyProduction = 1f;
+    /// <summary>
+    /// Energy used for Running per Second
+    /// </summary>
+    public float energyCostRunning = 0.3f;
+    /// <summary>
+    /// Energy used for Reparing per HIT
+    /// </summary>
+    public float energyCostRepearing = 2.5f;
 
     private void Start() {
         generator = FindObjectOfType<Generator>();
@@ -63,7 +76,10 @@ public class Player : MonoBehaviour
     }
 
     private void Update() {
-        //Do Something
+        if(generator.On) {
+            curEnergy = Mathf.Min(maxEnergy, (curEnergy+(runningGeneratorEnergyProduction*Time.deltaTime)));
+        }
+
         if(longTimeInteraction) {
             if(moveSpeed > 0) {
                 StopInteracting();
@@ -77,6 +93,10 @@ public class Player : MonoBehaviour
                     }
                     if (ltIBuilding != null) {
                         ret = ltIBuilding.HealBuilding(healPowerPerHit);
+                        curEnergy -= (energyCostRepearing);
+                        if (curEnergy <= 0f) {
+                            ret = true;
+                        }
                     }
                     if (ret) {
                         StopInteracting();
@@ -89,7 +109,8 @@ public class Player : MonoBehaviour
     public void Move(float vertical) {
         if(vertical != 0f) {
             moveSpeed = vertical * speed * Time.deltaTime;
-            if(highSpeed) { //TODO: && generator.On
+            if(highSpeed && curEnergy > 0f) {
+                curEnergy -= (energyCostRunning * Time.deltaTime);
                 moveSpeed *= highSpeedFactor;
             }
             transform.Translate(transform.worldToLocalMatrix.MultiplyVector(transform.forward) * moveSpeed);
@@ -192,12 +213,14 @@ public class Player : MonoBehaviour
     }
 
     public void RepairBuilding(Building b) {
-        playerAnimation.HitHouse();
-        ltIBuilding = b;
-        longTimeInteraction = true;
-        ltITimer = 0f;
-        ltIBuilding.RegisterBuildingReplacementCallback(BuildingReplacementCallback);
-        ltIBuilding.HealBuilding(healPowerPerHit);
+        if (curEnergy > 0f) {
+            playerAnimation.HitHouse();
+            ltIBuilding = b;
+            longTimeInteraction = true;
+            ltITimer = 0f;
+            ltIBuilding.RegisterBuildingReplacementCallback(BuildingReplacementCallback);
+            ltIBuilding.HealBuilding(healPowerPerHit);
+        }
     }
 
     public void CarryItem(Carriable c) {

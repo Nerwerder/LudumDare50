@@ -709,6 +709,11 @@ MonoBehaviour:
   healPowerPerHit: 20
   carryPosition: {fileID: 1091332261}
   lumberjackHitsPerSecond: 0.5
+  maxEnergy: 100
+  curEnergy: 50
+  runningGeneratorEnergyProduction: 1
+  energyCostRunning: 0.4
+  energyCostRepearing: 4
 --- !u!114 &1594215806
 MonoBehaviour:
   m_ObjectHideFlags: 0
