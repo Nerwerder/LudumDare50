@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// The Player is the GameElement directly controlled by the Player.
@@ -69,17 +70,35 @@ public class Player : MonoBehaviour
     /// </summary>
     public float energyCostRepearing = 2.5f;
 
+    public List<Image> powerRepresentations;
+    float energyPerElement;
+    int oldActiveImageCount = 0;
+
     private void Start() {
         generator = FindObjectOfType<Generator>();
         Debug.Assert(generator, "Player was not able to find the Generator");
         playerAnimation = GetComponent<PlayerAnimation>();
+        //Energy representation
+        energyPerElement = maxEnergy / powerRepresentations.Count;
+    }
+
+    private void UpdateEnergyRepresentation() {
+        for(int k = 0; k < powerRepresentations.Count; ++k) {
+            if(curEnergy >= ((k+1)*energyPerElement)-1) {
+                powerRepresentations[k].enabled = true;
+            } else {
+                powerRepresentations[k].enabled = false;
+            }
+        }
     }
 
     private void Update() {
+        //Get Energy from the Generator
         if(generator.On) {
             curEnergy = Mathf.Min(maxEnergy, (curEnergy+(runningGeneratorEnergyProduction*Time.deltaTime)));
         }
 
+        //Run the lingTimeInteractions (some use Energy)
         if(longTimeInteraction) {
             if(moveSpeed > 0) {
                 StopInteracting();
@@ -103,6 +122,13 @@ public class Player : MonoBehaviour
                     }
                 }
             }
+        }
+
+        //Update the Energy UI Element (if required)
+        int activeImages = (int)(curEnergy / energyPerElement);
+        if (activeImages != oldActiveImageCount) {
+            UpdateEnergyRepresentation();
+            oldActiveImageCount = activeImages;
         }
     }
 
