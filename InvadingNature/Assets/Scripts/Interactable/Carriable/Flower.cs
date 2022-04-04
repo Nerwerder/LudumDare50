@@ -56,7 +56,8 @@ public class Flower : Carriable
         //Flowers should ignore collisions with the Player (but still behave like a rigidBody after bein uprooted and thrown)
         var player = FindObjectOfType<Player>();
         if(player) {
-            Physics.IgnoreCollision(GetComponent<BoxCollider>(), player.gameObject.GetComponent<BoxCollider>(), true);
+            //TODO: how could this work with arbitrary colliders?
+            Physics.IgnoreCollision(GetComponent<BoxCollider>(), player.GetComponent<BoxCollider>(), true); ;
         }
     }
 

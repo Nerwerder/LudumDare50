@@ -198,6 +198,7 @@ MonoBehaviour:
   burnValue: 1
   despawnTime: 10
   onlyDeteriorateUprooted: 1
+  ignoreCollisionsWithPlayerIfCarried: 0
   nextPhase: {fileID: 0}
   minPhaseTime: 0
   maxPhaseTime: 0

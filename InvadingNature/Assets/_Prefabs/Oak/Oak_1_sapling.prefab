@@ -181,6 +181,8 @@ MonoBehaviour:
   burnValue: 1
   despawnTime: 6
   onlyDeteriorateUprooted: 1
+  ignoreCollisionsWithPlayerIfCarried: 1
+  carryCollider: {fileID: 1718829605}
   tree: {fileID: 391703194713679624, guid: 9a7b3e86c852d474fb39266a4102d684, type: 3}
   minTreeTime: 6
   maxTreeTime: 12

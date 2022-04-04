@@ -27,7 +27,9 @@ public class Player : MonoBehaviour
     /// </summary>
     public float healPower = 10f;
 
-    //TODO: Remove after final Model is here
+    /// <summary>
+    /// Parent for carried objects
+    /// </summary>
     public Transform carryPosition;
 
     /// <summary>
@@ -40,9 +42,15 @@ public class Player : MonoBehaviour
     /// </summary>
     Generator generator = null;
 
+    /// <summary>
+    /// Script that will execute all the Animations
+    /// </summary>
+    PlayerAnimation playerAnimation = null;
+
     private void Start() {
         generator = FindObjectOfType<Generator>();
         Debug.Assert(generator, "Player was not able to find the Generator");
+        playerAnimation = GetComponent<PlayerAnimation>();
     }
 
     public void Move(float vertical) {
@@ -108,23 +116,25 @@ public class Player : MonoBehaviour
     public void CarryItem(Carriable c) {
         Debug.Assert(!carry, "Cannot carry multiple things");
         c.UpdateTransform(carryPosition.transform.position, Quaternion.identity, carryPosition);
+        playerAnimation.Lift();
         carry = c;
     }
 
     public void ThrowItem(Vector3 target) {
         Debug.Assert(carry, "Throwing requires a carry");
         carry.Release();
-
         //Add some up so we get a nice arch
         Vector3 throwVector = ((target - transform.position) * throwPower);
         throwVector += Vector3.up * throwVector.magnitude * throwUpFactor;
         carry.GetComponent<Rigidbody>().AddForce(throwVector);
+        playerAnimation.Throw();
         carry = null;
     }
 
     public void ReleaseItem() {
         Debug.Assert(carry, "Releasing requires a carry");
         carry.Release();
+        playerAnimation.Drop();
         carry = null;
     }
 }

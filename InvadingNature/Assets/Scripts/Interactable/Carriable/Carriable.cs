@@ -44,6 +44,8 @@ public abstract class Carriable : Interactable
     public bool onlyDeteriorateUprooted = false;
     float despawnTimer = 0f;
 
+    //If the player carries something it should not collide with him (Flowers already don't collide with the player)
+    public bool ignoreCollisionsWithPlayerIfCarried = true;
 
     public void Burn() {
         if(carried) {
@@ -78,10 +80,29 @@ public abstract class Carriable : Interactable
         Destroy(gameObject);
     }
 
+    private void SetCarryPhysics(bool p) {
+        var rb = GetComponent<Rigidbody>();
+        if (rb) {
+            rb.isKinematic = p;
+        }
+        if (ignoreCollisionsWithPlayerIfCarried) {
+            var pc = carryingPlayer.GetComponent<BoxCollider>();
+            Debug.Assert(pc, "Was not able to find the PlayerCollider");
+            var bc = GetComponent<BoxCollider>();
+            if (bc) {
+                Physics.IgnoreCollision(pc, bc, p);
+            } else if (GetComponent<CapsuleCollider>()) {
+                Physics.IgnoreCollision(pc, GetComponent<CapsuleCollider>(), p);
+            } else {
+                Debug.Assert(false, "Was not able to find Carriable collider");
+            }
+        }
+    }
+
     public override void InteractWithPlayer(Player p) {
-        GetComponent<Rigidbody>().isKinematic = true;
-        Carried = true;
         carryingPlayer = p;
+        Carried = true;
+        SetCarryPhysics(true);
         //Carrying something resets the despawnTimer
         despawnTimer = 0f;
         p.CarryItem(this);
@@ -94,7 +115,7 @@ public abstract class Carriable : Interactable
     }
 
     public void Release() {
-        GetComponent<Rigidbody>().isKinematic = false;
+        SetCarryPhysics(false);
         transform.SetParent(oldParent);
         Carried = false;
         carryingPlayer = null;
