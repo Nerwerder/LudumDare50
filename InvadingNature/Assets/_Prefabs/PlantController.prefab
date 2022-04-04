@@ -47,21 +47,22 @@ MonoBehaviour:
   enableFlowers: 1
   seedling: {fileID: 1808800489923736387, guid: 7a2d31d33253e0343bd7df3686c0965c, type: 3}
   bloomColors:
-  - {r: 0.8396226, g: 0.31287822, b: 0.31287822, a: 0}
-  - {r: 0.7924528, g: 0.46253344, b: 0.13082945, a: 0}
-  - {r: 0.6029242, g: 0.05371129, b: 0.6698113, a: 0}
-  - {r: 0.7285508, g: 0.7830189, b: 0.09972411, a: 0}
-  - {r: 0.2063724, g: 0.20754719, b: 0.19286224, a: 0}
-  flowerMinTime: 4
-  flowerMaxTime: 10
+  - {r: 0.764151, g: 0.19824673, b: 0.19824673, a: 0}
+  - {r: 0.9339623, g: 0.3493794, b: 0.16300285, a: 0}
+  - {r: 0.6613118, g: 0.14048593, b: 0.7264151, a: 0}
+  - {r: 0.8679245, g: 0.7794029, b: 0.16785331, a: 0}
+  - {r: 0.5404343, g: 0.40445888, b: 0.5754717, a: 0}
+  flowerMinTime: 5
+  flowerMaxTime: 11
   enableTrees: 1
   acorn: {fileID: 4675819142119365460, guid: c63ffca96c671714a9a291b4d70b7243, type: 3}
   leafColors:
   - {r: 0.02024743, g: 0.3301887, b: 0.047259875, a: 0}
   - {r: 0.1533019, g: 0.6132076, b: 0.1784042, a: 0}
   - {r: 0.37603372, g: 0.5849056, b: 0.16278034, a: 0}
-  acornMinTime: 6
-  acornMaxTime: 11
+  - {r: 0.8396226, g: 0.6717892, b: 0.19406372, a: 0}
+  acornMinTime: 7
+  acornMaxTime: 12
   spawnRadius: 17
   growthFactor: 1
   spawnFactor: 1
