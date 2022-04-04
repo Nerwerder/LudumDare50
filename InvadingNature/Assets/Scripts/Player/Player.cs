@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
             float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
 
             //Apply Angle
-            transform.rotation = Quaternion.Euler(new Vector3(0f, 180 - angle, 0f));
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 270-angle, 0f));
         }
     }
 
