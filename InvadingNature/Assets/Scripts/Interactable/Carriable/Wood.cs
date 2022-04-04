@@ -17,7 +17,7 @@ public class Wood : Carriable
     private void Update() {
         aliveTimer += Time.deltaTime;
         if(aliveTimer > aTimerThreshold) {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
