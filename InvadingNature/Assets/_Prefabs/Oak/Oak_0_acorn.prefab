@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4675819142119365460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.123477995, y: 0.123477995, z: 0.123477995}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -136,7 +136,6 @@ MonoBehaviour:
   despawnTime: 8
   onlyDeteriorateUprooted: 0
   ignoreCollisionsWithPlayerIfCarried: 1
-  carryCollider: {fileID: 1316310546}
   sapling: {fileID: 2619268679092289967, guid: e27488888d4404f4ba0e75b84c81fd2d, type: 3}
   minSproutingTime: 6
   maxSproutingTime: 12
