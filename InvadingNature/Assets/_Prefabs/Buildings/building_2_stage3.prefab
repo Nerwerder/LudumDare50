@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6929187823449070471}
   m_Layer: 0
   m_Name: Spacer
-  m_TagString: Untagged
+  m_TagString: NoGrowthZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,3 +169,6 @@ MonoBehaviour:
   illerBuilding: {fileID: 0}
   healthUpperThreshold: 101
   healthLowerThreshold: 0
+  windowMaterialIndex: 3
+  window_off: {fileID: 2100000, guid: c4ef4872970b0cd49bb38fe90a8dbf51, type: 2}
+  window_on: {fileID: 2100000, guid: c4ef4872970b0cd49bb38fe90a8dbf51, type: 2}

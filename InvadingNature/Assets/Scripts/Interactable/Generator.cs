@@ -15,11 +15,42 @@ public class Generator : Interactable
     public Material onMaterial;
     public Material offMaterial;
     private ParticleSystem[] particleSystems;
+    //PowerChange
+    public delegate void PowerChangeCallback(bool c);
+    private List<PowerChangeCallback> powerChangeCallbacks = new List<PowerChangeCallback>();
 
     private void Start() {
         particleSystems = GetComponentsInChildren<ParticleSystem>();
+        RegisterPowerChangeCallback(PowerChange);
     }
 
+    public void RegisterPowerChangeCallback(PowerChangeCallback c) {
+        powerChangeCallbacks.Add(c);
+    }
+
+    public void DeregisterPowerChangeCallback(PowerChangeCallback c) {
+        powerChangeCallbacks.Remove(c);
+    }
+
+    private void CallAllPowerChangeCallbacks(bool s) {
+        foreach(var c in powerChangeCallbacks) {
+            c(s);
+        }
+    }
+
+    public void PowerChange(bool c) {
+        if (on) {
+            //gameObject.GetComponent<Renderer>().material = onMaterial;
+            foreach (var p in particleSystems) {
+                p.Play();
+            }
+        } else {
+            //gameObject.GetComponent<Renderer>().material = offMaterial;
+            foreach (var p in particleSystems) {
+                p.Stop();
+            }
+        }
+    }
 
     private void Update() {
         if(fuel > 0) {
@@ -31,17 +62,7 @@ public class Generator : Interactable
 
         if(on != oldOn) {
             oldOn = on;
-            if(on) {
-                gameObject.GetComponent<Renderer>().material = onMaterial;
-                foreach(var p in particleSystems) {
-                    p.Play();
-                }
-            } else {
-                gameObject.GetComponent<Renderer>().material = offMaterial;
-                foreach (var p in particleSystems) {
-                    p.Stop();
-                }
-            }
+            CallAllPowerChangeCallbacks(on);
         }
     }
 

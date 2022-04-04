@@ -22,18 +22,23 @@ public class Player : MonoBehaviour
     /// </summary>
     [HideInInspector] public float moveSpeed = 0f;
 
+    /// <summary>
+    /// How much can the player heal a damaged Entitiy per click (TODO: per second?)
+    /// </summary>
+    public float healPower = 10f;
+
     //TODO: Remove after final Model is here
     public Transform carryPosition;
 
     /// <summary>
     /// The object that is currently carried
     /// </summary>
-    private Carriable carry = null;
+    Carriable carry = null;
 
     /// <summary>
     /// The Generator provides the Player with Energy for highSpeed
     /// </summary>
-    private Generator generator = null;
+    Generator generator = null;
 
     private void Start() {
         generator = FindObjectOfType<Generator>();
