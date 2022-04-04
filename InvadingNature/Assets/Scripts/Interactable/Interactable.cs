@@ -16,7 +16,7 @@ public abstract class Interactable : MonoBehaviour
     /// <summary>
     /// If a interactable has to interact witha nother interactable in a special way, add a type (basically a second Tag to  allow identification without casting)
     /// </summary>
-    public enum InteractableType { Default, Generator, Plant }
+    public enum InteractableType { Default, Generator, Plant, Building }
     public InteractableType interactableType = InteractableType.Default;
 
     /// <summary>

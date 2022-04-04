@@ -289,13 +289,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   interactionDistance: 5
+  buildingInteractionDistance: 7
   throwPower: 50
   throwUpFactor: 0.45
   highSpeedFactor: 3
   moveSpeed: 0
-  healPower: 25
+  healPowerPerHit: 10
   carryPosition: {fileID: 8456330126920865438}
-  mainCollider: {fileID: 8456330125636143886}
+  lumberjackHitsPerSecond: 0.5
 --- !u!114 &6666970887179948757
 MonoBehaviour:
   m_ObjectHideFlags: 0

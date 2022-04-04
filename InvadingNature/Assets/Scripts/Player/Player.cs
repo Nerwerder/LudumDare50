@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
     public float speed = 1f;
     public float interactionDistance = 3f;
+    public float buildingInteractionDistance = 6f;
     public float throwPower = 5f;
     public float throwUpFactor = 4f;
     private bool highSpeed = false;
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// How much can the player heal a damaged Entitiy per click (TODO: per second?)
     /// </summary>
-    public float healPower = 10f;
+    public float healPowerPerHit = 10f;
 
     /// <summary>
     /// Parent for carried objects
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
     //TEST
     bool longTimeInteraction = false;
     Tree ltITree = null;
+    Building ltIBuilding = null;
     float ltITimer = 0f;
     public float lumberjackHitsPerSecond = 0.5f;
 
@@ -69,7 +71,13 @@ public class Player : MonoBehaviour
                 ltITimer += Time.deltaTime;
                 if (ltITimer >= lumberjackHitsPerSecond) {
                     ltITimer = 0f;
-                    var ret = ltITree.HitTree();
+                    var ret = true;
+                    if (ltITree != null) {
+                        ret = ltITree.HitTree();
+                    }
+                    if (ltIBuilding != null) {
+                        ret = ltIBuilding.HealBuilding(healPowerPerHit);
+                    }
                     if (ret) {
                         StopInteracting();
                     }
@@ -91,33 +99,40 @@ public class Player : MonoBehaviour
     }
 
     public void Rotate(Vector3 target) {
-        //Get the Screen positions of the object
-        Vector3 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
+        if(!longTimeInteraction) {
+            //Get the Screen positions of the object
+            Vector3 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
 
-        //Get the Screen position of the mouse
-        Vector3 mouseOnScreen = Camera.main.ScreenToViewportPoint(target);
+            //Get the Screen position of the mouse
+            Vector3 mouseOnScreen = Camera.main.ScreenToViewportPoint(target);
 
-        //Get the angle between the points
-        float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
+            //Get the angle between the points
+            float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
 
-        //Apply Angle
-        transform.rotation = Quaternion.Euler(new Vector3(0f,180-angle,0f));
+            //Apply Angle
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 180 - angle, 0f));
+        }
     }
 
     float AngleBetweenTwoPoints(Vector3 a, Vector3 b) {
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
     }
 
-    public bool InInteractionDistance(Transform other) {
-        return ((other.position - transform.position).magnitude < interactionDistance);
+    public bool InInteractionDistance(Interactable other) {
+        float distance = (other.interactableType == Interactable.InteractableType.Building) ? buildingInteractionDistance : interactionDistance;
+        return ((other.transform.position - transform.position).magnitude < distance);
     }
 
     public void Interact(RaycastHit[] hits) {
         List<Interactable> interactables = new List<Interactable>();
         Vector3 hitPoint = Vector3.zero;
         foreach (RaycastHit hit in hits) {
-            if (hit.transform.tag == Interactable.interactableTag && InInteractionDistance(hit.transform)) {
-                interactables.Add(hit.transform.gameObject.GetComponent<Interactable>());
+            if (hit.transform.tag == Interactable.interactableTag) {
+                var i = hit.transform.gameObject.GetComponent<Interactable>();
+                Debug.Assert(i != null, "Object has the Interactable Tag but no Interactable Script?");
+                if(InInteractionDistance(i)) {
+                    interactables.Add(i);
+                }
             } else {
                 hitPoint = hit.point;
             }
@@ -144,7 +159,11 @@ public class Player : MonoBehaviour
             if(ltITree != null) {
                 ltITree.DeregisterTreeReplacementCallback();
             }
+            if(ltIBuilding != null) {
+                ltIBuilding.DeregisterBuildingReplacementCallback();
+            }
             ltITree = null;
+            ltIBuilding = null;
         }
     }
 
@@ -157,16 +176,25 @@ public class Player : MonoBehaviour
     public void CutTreeDown(Tree t) {
         playerAnimation.CutTree();
         t.RegisterTreeReplacementCallback(TreeReplacementCallback);
-        if (t) {
-            t.HitTree();
-        }
+        t.HitTree();
         longTimeInteraction = true;
         ltITimer = 0f;
         ltITree = t;
     }
 
-    public void RepairBuilding(Building b) {
+    public void BuildingReplacementCallback(Building b) {
+        ltIBuilding.DeregisterBuildingReplacementCallback();
+        ltIBuilding = b;
+        ltIBuilding.RegisterBuildingReplacementCallback(BuildingReplacementCallback);
+    }
 
+    public void RepairBuilding(Building b) {
+        playerAnimation.CutTree();
+        b.RegisterBuildingReplacementCallback(BuildingReplacementCallback);
+        b.HealBuilding(healPowerPerHit);
+        longTimeInteraction = true;
+        ltITimer = 0f;
+        ltIBuilding = b;
     }
 
     public void CarryItem(Carriable c) {
