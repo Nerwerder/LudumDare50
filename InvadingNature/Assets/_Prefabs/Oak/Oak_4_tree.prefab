@@ -123,7 +123,7 @@ MonoBehaviour:
   minAcornSpawnRange: 1.2
   maxAcornSpawnRange: 2.5
   acornSpawnSlowdown: 1.2
-  hitsToCutDown: 3
+  hitsToCutDown: 4
   wood: {fileID: 8842495763847110766, guid: 389517944217a324cbdaed48f494d952, type: 3}
   spawnedWoodOnDeath: 3
   spawnedAcornsOnDeath: 2

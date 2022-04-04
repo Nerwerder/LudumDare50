@@ -40,6 +40,19 @@ public class Tree : Interactable
     float timerThreshold = 0f;
     float growthTimer = 0f;
 
+    //WORKAROUND
+    //If the player is in a longTimeInteraction with this Tree, he has to be informed if the tree Changes
+    public delegate void TreeReplacementCallback(Tree t);
+    private TreeReplacementCallback treeReplacementCallback = null;
+
+    public void RegisterTreeReplacementCallback(TreeReplacementCallback c) {
+        treeReplacementCallback = c;
+    }
+
+    public void DeregisterTreeReplacementCallback() {
+        treeReplacementCallback = null;
+    }
+
     private void ResetTimer() {
         growthTimer = 0f;
         if(nextPhase) {
@@ -64,6 +77,19 @@ public class Tree : Interactable
         Debug.Assert(buildingcontroller, "Flower was not able to find the BuildingController");
     }
 
+    private void ReplaceTree() {
+        var nGo = SpawnInPosition(nextPhase);
+        var nTr = nGo.GetComponent<Tree>();
+        //Inform the player that the Tree was replaced
+        if (treeReplacementCallback != null) {
+            treeReplacementCallback(nTr);
+        }
+        //Transfer the taken damage to the next phase
+        plantInfo.Damage = hits;
+        nTr.plantInfo = plantInfo;
+        Destroy(gameObject);
+    }
+
     private void Update() {
         //Damage the nearest Building
         accumulatedDamage += buildingDamagePerSecond * Time.deltaTime;
@@ -75,11 +101,7 @@ public class Tree : Interactable
         growthTimer += (Time.deltaTime * plantInfo.GrowthFactor);
         if(growthTimer >= timerThreshold) {
             if(nextPhase) {
-                var go = SpawnInPosition(nextPhase);
-                //Transfer the taken damage to the next phase
-                plantInfo.Damage = hits;
-                go.GetComponent<Tree>().plantInfo = plantInfo;
-                Destroy(gameObject);
+                ReplaceTree();
             } else if (acorn) {
                 SpanAcorn(3f);
                 ResetTimer();
@@ -108,10 +130,16 @@ public class Tree : Interactable
         p.CutTreeDown(this);
     }
 
-    public void HitTree() {
+    /// <summary>
+    /// Hit the Tree with your Axe
+    /// </summary>
+    /// <returns>True if the Tree is dead, False if the Tree is still alive</returns>
+    public bool HitTree() {
         if (++hits >= hitsToCutDown) {
             CutDown();
+            return true;
         }
+        return false;
     }
 
     private void CutDown() {
