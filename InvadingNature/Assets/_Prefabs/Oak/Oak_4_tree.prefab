@@ -99,8 +99,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5598454, y: 2.508716, z: 0.37866455}
-  m_Center: {x: -0.035153806, y: 1.1543586, z: 0.0012188852}
+  m_Size: {x: 0.8184265, y: 2.864265, z: 0.6130036}
+  m_Center: {x: -0.002831161, y: 1.332133, z: -0.02706343}
 --- !u!114 &992209288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   acorn: {fileID: 4675819142119365460, guid: c63ffca96c671714a9a291b4d70b7243, type: 3}
   minAcornSpawnTime: 12
   maxAcornSpawnTime: 19
-  minAcornSpawnRange: 1.5
+  minAcornSpawnRange: 1.6
   maxAcornSpawnRange: 2.6
   acornSpawnSlowdown: 1.35
   hitsToCutDown: 4
@@ -128,7 +128,7 @@ MonoBehaviour:
   spawnedWoodOnDeath: 3
   spawnedAcornsOnDeath: 2
   woodSpawnRange: 1
-  buildingDamagePerSecond: 1.1
+  buildingDamagePerSecond: 0.6
   maxDamageDistance: 16
 --- !u!1 &6136954559667171713
 GameObject:
@@ -218,5 +218,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.6
+  m_Radius: 1.8
   m_Center: {x: 0, y: 0, z: 0}

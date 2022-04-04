@@ -173,7 +173,7 @@ MonoBehaviour:
   spawnedWoodOnDeath: 1
   spawnedAcornsOnDeath: 0
   woodSpawnRange: 1
-  buildingDamagePerSecond: 0.8
+  buildingDamagePerSecond: 0.5
   maxDamageDistance: 14
 --- !u!1 &3094881670532179195
 GameObject:
@@ -218,5 +218,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.1
+  m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}

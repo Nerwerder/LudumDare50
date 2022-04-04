@@ -54,7 +54,7 @@ MonoBehaviour:
   - {r: 0.5404343, g: 0.40445888, b: 0.5754717, a: 0}
   flowerMinTime: 5
   flowerMaxTime: 11
-  enableTrees: 1
+  enableTrees: 0
   acorn: {fileID: 4675819142119365460, guid: c63ffca96c671714a9a291b4d70b7243, type: 3}
   leafColors:
   - {r: 0.02024743, g: 0.3301887, b: 0.047259875, a: 0}
@@ -63,6 +63,9 @@ MonoBehaviour:
   - {r: 0.8396226, g: 0.6717892, b: 0.19406372, a: 0}
   acornMinTime: 7
   acornMaxTime: 12
+  ground: {fileID: 0}
   spawnRadius: 17
-  growthFactor: 1
-  spawnFactor: 1
+  growthFactor: 0.5
+  spawnFactor: 10
+  increaseInterval: 20
+  increaseFactor: 1.01

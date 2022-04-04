@@ -60,7 +60,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.38
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &385535867333293869
 GameObject:
@@ -178,8 +178,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.38841563, y: 0.7547894, z: 0.4905575}
-  m_Center: {x: -0.04910907, y: 0.37703577, z: 0.027084172}
+  m_Size: {x: 0.72678304, y: 1.4867679, z: 0.9186957}
+  m_Center: {x: 0.0878492, y: 0.743025, z: -0.053479433}
 --- !u!114 &8362236797351219367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,10 +204,10 @@ MonoBehaviour:
   maxPhaseTime: 0
   seed: {fileID: 1808800489923736387, guid: 7a2d31d33253e0343bd7df3686c0965c, type: 3}
   minSeedSpawnTime: 8
-  maxSeedSpawnTime: 15
+  maxSeedSpawnTime: 16
   minSpawnedSeedOnDeath: 2
-  maxSpawnedSeedOnDeath: 3
-  seedSpawnRange: 1.5
+  maxSpawnedSeedOnDeath: 4
+  seedSpawnRange: 2
   seedSpawnSlowdown: 1.5
-  buildingDamagePerSecond: 0.8
+  buildingDamagePerSecond: 0.4
   maxDamageDistance: 13

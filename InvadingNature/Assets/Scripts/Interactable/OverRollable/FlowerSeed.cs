@@ -18,8 +18,7 @@ public class FlowerSeed : OverRollable
     //Scale out with Damage
     public float scaleOutPercentage = 0.15f;
     //Point of no Return
-    public bool scaleChanged = false;
-
+    bool scaleChanged = false;
 
     protected override void Start() {
         base.Start();

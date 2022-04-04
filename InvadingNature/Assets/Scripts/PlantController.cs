@@ -26,6 +26,10 @@ public class PlantController : MonoBehaviour
     public float spawnRadius = 5f;
     public float growthFactor = 1f;
     public float spawnFactor = 1f;
+    //Increase with time
+    public float increaseInterval = 20f;
+    public float increaseFactor = 1.01f;
+    float increaseTimer = 0f;
 
     void Start()
     {
@@ -35,6 +39,14 @@ public class PlantController : MonoBehaviour
 
     void Update()
     {
+        //Slowly increase the SpawnRate with Time (so even the most hardcore Gamer will fail at some point) 
+        increaseTimer += Time.deltaTime;
+        if (increaseTimer > increaseInterval) {
+            spawnFactor *= increaseFactor;
+            growthFactor *= increaseFactor;
+            increaseTimer = 0f;
+        }
+
         //Flower
         if(enableFlowers) {
             flowerTimer += (Time.deltaTime * spawnFactor);

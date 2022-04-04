@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -3134007947081891359}
   - component: {fileID: 6193672976103859952}
   - component: {fileID: 7899207989815962580}
+  - component: {fileID: -8841719362842574755}
   m_Layer: 0
   m_Name: Flower_0_seed
   m_TagString: Interactable
@@ -113,8 +114,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.21844661
+  m_Center: {x: -0.015552446, y: 0, z: -0.0032177567}
 --- !u!114 &7899207989815962580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,11 +131,24 @@ MonoBehaviour:
   interactableType: 2
   maxHealth: 100
   curHealth: 100
-  rollOverDamage: 70
+  rollOverDamage: 60
   movementSpeedFactor: 120
   possibleSeedlings:
   - {fileID: 4210627542755690324, guid: b8bbe9d1442d41542bd9331fa3a1e38d, type: 3}
-  minSproutingTime: 3
-  maxSproutingTime: 8
-  wrongZoneDamage: 20
+  minSproutingTime: 4
+  maxSproutingTime: 9
+  wrongZoneDamage: 15
   scaleOutPercentage: 0.1
+--- !u!135 &-8841719362842574755
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808800489923736387}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.21928762
+  m_Center: {x: -0.015021302, y: 0.0009263838, z: -0.002997309}

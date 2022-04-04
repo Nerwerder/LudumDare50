@@ -160,8 +160,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.19999999, y: 0.13074401, z: 0.19999999}
-  m_Center: {x: 0, y: 0.06501305, z: 0}
+  m_Size: {x: 0.38032925, y: 0.25040948, z: 0.38282228}
+  m_Center: {x: 0.00041550398, y: 0.1248458, z: 0.00083100796}
 --- !u!114 &7879094959066134643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,8 +177,8 @@ MonoBehaviour:
   interactableType: 2
   maxHealth: 100
   curHealth: 100
-  rollOverDamage: 80
-  movementSpeedFactor: 130
+  rollOverDamage: 60
+  movementSpeedFactor: 120
   nextPhase: {fileID: 8707905938664569051, guid: c2ee18b4da1296d4ca00c7b6b0f09721, type: 3}
   minPhaseTime: 5
   maxPhaseTime: 7

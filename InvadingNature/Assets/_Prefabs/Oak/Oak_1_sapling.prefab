@@ -43,7 +43,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.9
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2619268679092289967
 GameObject:
@@ -182,7 +182,6 @@ MonoBehaviour:
   despawnTime: 6
   onlyDeteriorateUprooted: 1
   ignoreCollisionsWithPlayerIfCarried: 1
-  carryCollider: {fileID: 1718829605}
   tree: {fileID: 391703194713679624, guid: 9a7b3e86c852d474fb39266a4102d684, type: 3}
   minTreeTime: 6
   maxTreeTime: 12
