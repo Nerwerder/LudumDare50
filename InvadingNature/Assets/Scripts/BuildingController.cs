@@ -10,10 +10,29 @@ public class BuildingController : MonoBehaviour
     public List<Image> buildingRepresentative;
     public List<Sprite> buldingStateSprites;
 
+    GameController gameController;
+    List<int> stageValues = new List<int> {0, 0, 0, 0};
+
+    private void Start() {
+        gameController = FindObjectOfType<GameController>();
+    }
+
     public void RegisterBuilding(Building b, int id, int stage) {
         buildings.Add(b);
         //Change UI
         buildingRepresentative[id].sprite = buldingStateSprites[stage];
+        stageValues[id] = stage;
+
+        //WORKAROUND: Time is running out
+        bool allIsTwo = true;
+        foreach(var s in stageValues) {
+            if(s != 2) {
+                allIsTwo = false;
+            }
+        }
+        if(allIsTwo) {
+            gameController.GameOver();
+        }
     }
 
     public void RemoveBuilding(Building b) {

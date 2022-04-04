@@ -52,6 +52,9 @@ public class GameController : MonoBehaviour
 
     public void StartGame() {
         mainMenuRoot.SetActive(false);
+        PlantController pc = FindObjectOfType<PlantController>();
+        pc.enableFlowers = true;
+        pc.enableTrees = true;
     }
 
     public void GameOver() {
