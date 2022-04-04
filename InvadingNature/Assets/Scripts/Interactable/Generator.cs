@@ -60,6 +60,11 @@ public class Generator : Interactable
         } else {
             on = false;
         }
+
+        if(on != oldOn) {
+            oldOn = on;
+            CallAllPowerChangeCallbacks(on);
+        }
     }
 
     public override void InteractWithItem(Carriable c) {
