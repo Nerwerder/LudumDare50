@@ -2185,6 +2185,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1055327217, guid: 0c292f3e8fdd7f141a30fa99706214ed, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055327217, guid: 0c292f3e8fdd7f141a30fa99706214ed, type: 3}
+      propertyPath: m_Volume
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055327217, guid: 0c292f3e8fdd7f141a30fa99706214ed, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c3c3dddd2c392ba43996237856ee97fd, type: 3}
     - target: {fileID: 3917830371625065022, guid: 0c292f3e8fdd7f141a30fa99706214ed, type: 3}
       propertyPath: m_Name
       value: GameController
