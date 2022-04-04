@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1320107585546004985}
   - component: {fileID: 2737675443293103708}
   - component: {fileID: 151673258819408534}
-  - component: {fileID: 7899207989815962583}
+  - component: {fileID: -3134007947081891359}
+  - component: {fileID: 6193672976103859952}
   - component: {fileID: 7899207989815962580}
   m_Layer: 0
   m_Name: Flower_0_seed
@@ -85,7 +86,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7899207989815962583
+--- !u!54 &-3134007947081891359
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808800489923736387}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &6193672976103859952
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,11 +110,11 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1808800489923736387}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5035121
-  m_Center: {x: -0.037832048, y: 0.010672732, z: -0.0068821907}
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7899207989815962580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,9 +128,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableType: 0
-  health: 100
-  rollOverDamage: 120
-  movementSpeedFactor: 140
+  maxHealth: 100
+  curHealth: 100
+  rollOverDamage: 70
+  movementSpeedFactor: 120
   possibleSeedlings:
   - {fileID: 4210627542755690324, guid: b8bbe9d1442d41542bd9331fa3a1e38d, type: 3}
   minSproutingTime: 3

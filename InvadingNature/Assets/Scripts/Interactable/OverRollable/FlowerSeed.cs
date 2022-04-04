@@ -56,13 +56,15 @@ public class FlowerSeed : OverRollable
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other) {
+    protected override void OnTriggerEnter(Collider other) {
+        base.OnTriggerEnter(other);
         if(other.gameObject.tag == noGrowthTag) {
             ++inNonGrowthZone;  //A seed could be in multiple overlapping Growth Zones at the same time
         }
     }
 
-    private void OnTriggerExit(Collider other) {
+    protected override void OnTriggerExit(Collider other) {
+        base.OnTriggerExit(other);
         if (other.gameObject.tag == noGrowthTag) {
             --inNonGrowthZone;
         }

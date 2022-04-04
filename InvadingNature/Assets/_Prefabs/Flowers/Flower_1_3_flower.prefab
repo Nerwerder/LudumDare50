@@ -178,8 +178,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.30431202, y: 0.68317443, z: 0.3266766}
-  m_Center: {x: -0.03658907, y: 0.34122828, z: 0.0046617687}
+  m_Size: {x: 0.35261598, y: 0.7480034, z: 0.47921535}
+  m_Center: {x: -0.0378602, y: 0.37364277, z: 0.02500029}
 --- !u!114 &7763711304417357868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,5 +205,8 @@ MonoBehaviour:
   minSpawnedSeedOnDeath: 2
   maxSpawnedSeedOnDeath: 5
   seedSpawnRange: 1.2
+  seedSpawnSlowdown: 1.2
   minDeathTime: 4
   maxDeathTime: 8
+  buildingDamagePerSecond: 1
+  maxDamageDistance: 12

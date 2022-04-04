@@ -43,13 +43,13 @@ public abstract class OverRollable : Interactable
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
+    protected virtual void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == playerTag) {
             playerOnTop = true;
         }
     }
 
-    private void OnTriggerExit(Collider other) {
+    protected virtual void OnTriggerExit(Collider other) {
         if (other.gameObject.tag == playerTag) {
             playerOnTop = false;
         }

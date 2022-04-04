@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3800650341241999682}
   - component: {fileID: 1394541455424529800}
   - component: {fileID: 992209286}
-  - component: {fileID: 992209287}
   - component: {fileID: 992209288}
   m_Layer: 0
   m_Name: Oak_4_tree
@@ -100,24 +99,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.46909708, y: 1.6926924, z: 0.27857518}
-  m_Center: {x: -0.08052796, y: 0.74634665, z: -0.006272792}
---- !u!54 &992209287
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 601956642888418397}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Size: {x: 0.5598454, y: 2.508716, z: 0.37866455}
+  m_Center: {x: -0.035153806, y: 1.1543586, z: 0.0012188852}
 --- !u!114 &992209288
 MonoBehaviour:
   m_ObjectHideFlags: 0

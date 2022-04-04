@@ -64,6 +64,11 @@ public class Flower : Carriable
         //Get the nearest Building
         buildingcontroller = FindObjectOfType<BuildingController>();
         Debug.Assert(buildingcontroller, "Flower was not able to find the BuildingController");
+        //Flowers should ignore collisions with the Player (but still behave like a rigidBody after bein uprooted and thrown)
+        var player = FindObjectOfType<Player>();
+        if(player) {
+            Physics.IgnoreCollision(GetComponent<BoxCollider>(), player.gameObject.GetComponent<BoxCollider>(), true);
+        }
     }
 
     void Update() {

@@ -57,7 +57,6 @@ GameObject:
   - component: {fileID: 4146567049905451543}
   - component: {fileID: 2193085389259196125}
   - component: {fileID: 2106025156}
-  - component: {fileID: 2106025157}
   - component: {fileID: 2106025158}
   m_Layer: 0
   m_Name: Oak_2_tree
@@ -145,24 +144,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.33821672, y: 1.303618, z: 0.25806645}
-  m_Center: {x: -0.07408991, y: 0.6124063, z: -0.0015748454}
---- !u!54 &2106025157
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 391703194713679624}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Size: {x: 0.38148665, y: 1.6092491, z: 0.2783174}
+  m_Center: {x: -0.05245495, y: 0.76522183, z: -0.0028122663}
 --- !u!114 &2106025158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,9 +165,8 @@ MonoBehaviour:
   acorn: {fileID: 4675819142119365460, guid: c63ffca96c671714a9a291b4d70b7243, type: 3}
   minAcornSpawnTime: 2
   maxAcornSpawnTime: 4
-  minSpawnedAcornOnDeath: 3
-  maxSpawnedAcornOnDeath: 7
-  acornSpawnRange: 2
+  minAcornSpawnRange: 1.2
+  maxAcornSpawnRange: 2.5
   acornSpawnSlowdown: 1.2
   hitsToCutDown: 2
   wood: {fileID: 8842495763847110766, guid: 389517944217a324cbdaed48f494d952, type: 3}
