@@ -203,11 +203,11 @@ MonoBehaviour:
   minPhaseTime: 0
   maxPhaseTime: 0
   seed: {fileID: 1808800489923736387, guid: 7a2d31d33253e0343bd7df3686c0965c, type: 3}
-  minSeedSpawnTime: 5
-  maxSeedSpawnTime: 9
+  minSeedSpawnTime: 8
+  maxSeedSpawnTime: 15
   minSpawnedSeedOnDeath: 2
   maxSpawnedSeedOnDeath: 3
   seedSpawnRange: 1.5
-  seedSpawnSlowdown: 1.2
+  seedSpawnSlowdown: 1.5
   buildingDamagePerSecond: 0.8
   maxDamageDistance: 13

@@ -183,6 +183,7 @@ public class Player : MonoBehaviour
     }
 
     public void BuildingReplacementCallback(Building b) {
+        Debug.Assert(b, "BuildingReplacementCallback was called without valid building")
         ltIBuilding.DeregisterBuildingReplacementCallback();
         ltIBuilding = b;
         ltIBuilding.RegisterBuildingReplacementCallback(BuildingReplacementCallback);

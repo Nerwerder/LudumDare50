@@ -6,6 +6,8 @@ public class PlayerAnimation : MonoBehaviour
 {
     public GameObject inactiveAxe;
     public GameObject activeAxe;
+    public GameObject inactiveHammer;
+    public GameObject activeHammer;
     public Animator animator;
 
 

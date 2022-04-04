@@ -118,11 +118,11 @@ MonoBehaviour:
   minPhaseTime: 0
   maxPhaseTime: 0
   acorn: {fileID: 4675819142119365460, guid: c63ffca96c671714a9a291b4d70b7243, type: 3}
-  minAcornSpawnTime: 8
-  maxAcornSpawnTime: 14
+  minAcornSpawnTime: 12
+  maxAcornSpawnTime: 19
   minAcornSpawnRange: 1.5
   maxAcornSpawnRange: 2.6
-  acornSpawnSlowdown: 1.2
+  acornSpawnSlowdown: 1.35
   hitsToCutDown: 4
   wood: {fileID: 8842495763847110766, guid: 389517944217a324cbdaed48f494d952, type: 3}
   spawnedWoodOnDeath: 3
