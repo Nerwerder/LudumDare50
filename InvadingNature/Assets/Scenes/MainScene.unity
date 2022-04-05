@@ -2190,6 +2190,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1055327217, guid: 0c292f3e8fdd7f141a30fa99706214ed, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3917830371625064960, guid: 0c292f3e8fdd7f141a30fa99706214ed, type: 3}
       propertyPath: gameOverMenu
       value: 
@@ -2444,6 +2448,14 @@ PrefabInstance:
     - target: {fileID: 2133502015498520056, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133502015498520057, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
+      propertyPath: spawnIncreaseInterval
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133502015498520057, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
+      propertyPath: growthIncreaseInterval
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2133502015498520059, guid: 99d030496b8bc8f4188538c54d32932e, type: 3}
       propertyPath: m_Name
