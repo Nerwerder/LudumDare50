@@ -136,7 +136,9 @@ MonoBehaviour:
   despawnTime: 8
   onlyDeteriorateUprooted: 0
   ignoreCollisionsWithPlayerIfCarried: 1
-  sapling: {fileID: 2619268679092289967, guid: e27488888d4404f4ba0e75b84c81fd2d, type: 3}
+  checkNoGrowthZone: 1
+  checkNoTreeZone: 1
+  scaleOutPercentage: 0.15
   minSproutingTime: 6
   maxSproutingTime: 12
-  scaleOutPercentage: 0.15
+  sapling: {fileID: 2619268679092289967, guid: e27488888d4404f4ba0e75b84c81fd2d, type: 3}

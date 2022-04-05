@@ -211,3 +211,4 @@ MonoBehaviour:
   seedSpawnSlowdown: 0
   buildingDamagePerSecond: 0.3
   maxDamageDistance: 12
+  changeBloomColor: 1

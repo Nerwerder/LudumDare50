@@ -93,6 +93,8 @@ public abstract class Carriable : Interactable
                 Physics.IgnoreCollision(pc, bc, p);
             } else if (GetComponent<CapsuleCollider>()) {
                 Physics.IgnoreCollision(pc, GetComponent<CapsuleCollider>(), p);
+            } else if (GetComponent<SphereCollider>()) {
+                Physics.IgnoreCollision(pc, GetComponent<SphereCollider>(), p);
             } else {
                 Debug.Assert(false, "Was not able to find Carriable collider");
             }
@@ -125,7 +127,7 @@ public abstract class Carriable : Interactable
         //Nothing
     }
 
-    public virtual void OnTriggerEnter(Collider other) {
+    protected virtual void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == interactableTag) {
             var i = other.GetComponent<Interactable>();
             if(i.interactableType == InteractableType.Generator) {

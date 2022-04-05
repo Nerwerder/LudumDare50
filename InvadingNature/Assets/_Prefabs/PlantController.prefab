@@ -66,5 +66,7 @@ MonoBehaviour:
   spawnRadius: 20
   growthFactor: 1
   spawnFactor: 1
-  increaseInterval: 10
-  increaseFactor: 1.01
+  spawnIncreaseInterval: 10
+  spawnIncreaseFactor: 1.01
+  growthIncreaseInterval: 20
+  growthIncreaseFactor: 1.01

@@ -73,8 +73,9 @@ GameObject:
   - component: {fileID: 3541227733128158702}
   - component: {fileID: 471519278769803851}
   - component: {fileID: 2409385121963730561}
+  - component: {fileID: 225878498934647170}
   - component: {fileID: 7879094959066134642}
-  - component: {fileID: 7879094959066134643}
+  - component: {fileID: 7557038524716038216}
   m_Layer: 0
   m_Name: Flower_1_1_seedling
   m_TagString: Interactable
@@ -149,6 +150,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &225878498934647170
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4210627542755690324}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &7879094959066134642
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -157,12 +174,12 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4210627542755690324}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.38032925, y: 0.25040948, z: 0.38282228}
   m_Center: {x: 0.00041550398, y: 0.1248458, z: 0.00083100796}
---- !u!114 &7879094959066134643
+--- !u!114 &7557038524716038216
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,14 +188,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 4210627542755690324}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0baab5bd2ca034e866325336d9d28e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c0b9e5c20c8ef34d9935b6f8b9826d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 2
-  maxHealth: 100
-  curHealth: 100
-  rollOverDamage: 60
-  movementSpeedFactor: 120
+  interactableType: 0
+  oldParent: {fileID: 0}
+  burnable: 1
+  burnValue: 0.5
+  despawnTime: 10
+  onlyDeteriorateUprooted: 0
+  ignoreCollisionsWithPlayerIfCarried: 1
   nextPhase: {fileID: 8707905938664569051, guid: c2ee18b4da1296d4ca00c7b6b0f09721, type: 3}
-  minPhaseTime: 5
-  maxPhaseTime: 7
+  minPhaseTime: 6
+  maxPhaseTime: 8
+  seed: {fileID: 0}
+  minSeedSpawnTime: 0
+  maxSeedSpawnTime: 0
+  minSpawnedSeedOnDeath: 0
+  maxSpawnedSeedOnDeath: 0
+  seedSpawnRange: 0
+  seedSpawnSlowdown: 0
+  buildingDamagePerSecond: 0.1
+  maxDamageDistance: 8
+  changeBloomColor: 0

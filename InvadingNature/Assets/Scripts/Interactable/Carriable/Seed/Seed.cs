@@ -2,38 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Acorn that will grow into a Sapling (that should grow into a Tree)
-/// </summary>
-public class Acorn : Carriable
+public abstract class Seed : Carriable
 {
+    protected GrowthZoneChecker zoneChecker;
+    public bool checkNoGrowthZone = false;
+    public bool checkNoTreeZone = false;
+
+    //Point of no Return (with the exception of a player picking the element up)
+    protected bool scaleChanged = false;
+    //Scale out with Damage
+    public float scaleOutPercentage = 0.1f;
+
     //Sprouting
-    public GameObject sapling;
+    protected float sproutTimer = 0f;
     public float minSproutingTime = 3f;
     public float maxSproutingTime = 5f;
     float sTimeThreshold = 0f;
-    float sproutTimer = 0f;
-
-    GrowthZoneChecker zoneChecker = new GrowthZoneChecker(true, true);
-    //Point of no Return (with the exception of a player picking the element up)
-    private bool scaleChanged = false;
-    public float scaleOutPercentage = 0.15f;
 
     protected override void Start() {
         base.Start();
-        //How long will it take to sprout?
+        zoneChecker = new GrowthZoneChecker(checkNoGrowthZone, checkNoTreeZone);
         sTimeThreshold = Random.Range(minSproutingTime, maxSproutingTime);
-        Debug.Assert(plantInfo != null, "No PlantInfo in Acorn");
     }
 
     protected override void Update() {
         base.Update();
-        if((!Carried) && (zoneChecker.CanGrow()) && (!scaleChanged)) {
+        if (zoneChecker.CanGrow() && (!scaleChanged) && (!Carried)) {
             sproutTimer += (Time.deltaTime * plantInfo.GrowthFactor);
             if (sproutTimer > sTimeThreshold) {
-                var go = SpawnInPosition(sapling);
-                go.GetComponent<OakSapling>().plantInfo = plantInfo;
-                Destroy(gameObject);
+                Sprout();
             }
         }
     }
@@ -49,8 +46,8 @@ public class Acorn : Carriable
         despawnTimer += Time.deltaTime;
 
         //Time for Fade Out
-        if (despawnTimer > (despawnTime*(1f- scaleOutPercentage))) {
-            float factor = (despawnTime - despawnTimer) / (despawnTime* scaleOutPercentage);
+        if (despawnTimer > (despawnTime * (1f - scaleOutPercentage))) {
+            float factor = (despawnTime - despawnTimer) / (despawnTime * scaleOutPercentage);
             transform.localScale = new Vector3(factor, factor, factor);
             scaleChanged = true;
         }
@@ -60,8 +57,10 @@ public class Acorn : Carriable
         }
     }
 
+    protected abstract void Sprout();
+
     public override void InteractWithPlayer(Player p) {
-        if(scaleChanged) {
+        if (scaleChanged) {
             transform.localScale = Vector3.one;
             scaleChanged = false;
         }
@@ -69,12 +68,12 @@ public class Acorn : Carriable
         sproutTimer = 0f;
     }
 
-    public override void OnTriggerEnter(Collider other) {
+    protected override void OnTriggerEnter(Collider other) {
         base.OnTriggerEnter(other);
         zoneChecker.EnterCollider(other);
     }
 
-    private void OnTriggerExit(Collider other) {
+    void OnTriggerExit(Collider other) {
         zoneChecker.ExitCollider(other);
     }
 }

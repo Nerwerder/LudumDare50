@@ -27,9 +27,12 @@ public class PlantController : MonoBehaviour
     public float growthFactor = 1f;
     public float spawnFactor = 1f;
     //Increase with time
-    public float increaseInterval = 20f;
-    public float increaseFactor = 1.01f;
-    float increaseTimer = 0f;
+    public float spawnIncreaseInterval = 20f;
+    public float spawnIncreaseFactor = 1.01f;
+    public float growthIncreaseInterval = 20f;
+    public float growthIncreaseFactor = 1.01f;
+    float spawnIncreaseTimer = 0f;
+    float growthIncreaseTimer = 0f;
 
     void Start()
     {
@@ -40,15 +43,19 @@ public class PlantController : MonoBehaviour
     void Update()
     {
         //Slowly increase the SpawnRate with Time (so even the most hardcore Gamer will fail at some point) 
-        increaseTimer += Time.deltaTime;
-        if (increaseTimer > increaseInterval) {
-            spawnFactor *= increaseFactor;
-            growthFactor *= increaseFactor;
-            increaseTimer = 0f;
+        spawnIncreaseTimer += Time.deltaTime;
+        if (spawnIncreaseTimer > spawnIncreaseInterval) {
+            spawnFactor *= spawnIncreaseFactor;
+            spawnIncreaseTimer = 0f;
+        }
+        growthIncreaseTimer += Time.deltaTime;
+        if(growthIncreaseTimer > growthIncreaseInterval) {
+            growthFactor *= growthIncreaseFactor;
+            growthIncreaseTimer = 0f;
         }
 
         //Flower
-        if(enableFlowers) {
+        if (enableFlowers) {
             flowerTimer += (Time.deltaTime * spawnFactor);
             if (flowerTimer > fTimerThreshold) {
                 var go = Spawn(seedling);

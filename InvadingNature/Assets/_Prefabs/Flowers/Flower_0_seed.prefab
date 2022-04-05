@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 2737675443293103708}
   - component: {fileID: 151673258819408534}
   - component: {fileID: -3134007947081891359}
-  - component: {fileID: 6193672976103859952}
+  - component: {fileID: 1688994211778971628}
   - component: {fileID: 7899207989815962580}
-  - component: {fileID: -8841719362842574755}
   m_Layer: 0
   m_Name: Flower_0_seed
   m_TagString: Interactable
@@ -96,26 +95,26 @@ Rigidbody:
   m_GameObject: {fileID: 1808800489923736387}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
+  m_Drag: 0.1
+  m_AngularDrag: 0.7
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &6193672976103859952
-SphereCollider:
+--- !u!65 &1688994211778971628
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1808800489923736387}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.21844661
-  m_Center: {x: -0.015552446, y: 0, z: -0.0032177567}
+  m_Size: {x: 0.28908592, y: 0.057343304, z: 0.43857524}
+  m_Center: {x: -0.015021302, y: 0.0009263838, z: -0.002997309}
 --- !u!114 &7899207989815962580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,26 +128,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableType: 2
-  maxHealth: 100
-  curHealth: 100
-  rollOverDamage: 60
-  movementSpeedFactor: 120
-  possibleSeedlings:
-  - {fileID: 4210627542755690324, guid: b8bbe9d1442d41542bd9331fa3a1e38d, type: 3}
+  oldParent: {fileID: 0}
+  burnable: 1
+  burnValue: 0.2
+  despawnTime: 12
+  onlyDeteriorateUprooted: 0
+  ignoreCollisionsWithPlayerIfCarried: 1
+  checkNoGrowthZone: 1
+  checkNoTreeZone: 0
+  scaleOutPercentage: 0.1
   minSproutingTime: 4
   maxSproutingTime: 9
-  wrongZoneDamage: 15
-  scaleOutPercentage: 0.1
---- !u!135 &-8841719362842574755
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1808800489923736387}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.21928762
-  m_Center: {x: -0.015021302, y: 0.0009263838, z: -0.002997309}
+  possibleSeedlings:
+  - {fileID: 4210627542755690324, guid: b8bbe9d1442d41542bd9331fa3a1e38d, type: 3}

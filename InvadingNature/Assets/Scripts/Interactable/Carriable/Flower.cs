@@ -31,6 +31,8 @@ public class Flower : Carriable
     private float accumulatedDamage = 0f;
     public float maxDamageDistance = 12f;
 
+    public bool changeBloomColor = false;
+
     private void ResetTimer() {
         growthTimer = 0;
         if(nextPhase) {
@@ -49,7 +51,9 @@ public class Flower : Carriable
         ResetTimer();
         //Change the color of the Flower
         Debug.Assert(plantInfo != null, "Bloom has to be set");
-        gameObject.GetComponent<Renderer>().materials[2].color = plantInfo.BloomColor;
+        if(changeBloomColor) {
+            gameObject.GetComponent<Renderer>().materials[2].color = plantInfo.BloomColor;
+        }
         //Get the nearest Building
         buildingcontroller = FindObjectOfType<BuildingController>();
         Debug.Assert(buildingcontroller, "Flower was not able to find the BuildingController");
